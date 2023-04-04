@@ -1,0 +1,11 @@
+  =>  Template Name    : Hope In - Hope In Website Template
+
+  =>  Template Link    : #/startup-website-template
+
+  =>  Template License : #/license (or read the LICENSE.txt file)
+
+  =>  Template Author  : EDEN
+
+  =>  Author Website   : #
+
+  =>  About EDEN : EDEN is one of the top creators and publishers of Free HTML templates, HTML landing pages, HTML email templates and HTML snippets in the world. Read more at ( #/about-us )
