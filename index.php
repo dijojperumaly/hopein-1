@@ -1,169 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <title>Hope In - Travel And Educational Solution</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
-
-<!-- Floating Button
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
-
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-
-    <style>
-        .float{
-            position:fixed;
-            width:50px;
-            height:50px;
-            bottom:100px;
-            right:40px;
-            /*background-color:#25d366;*/
-            background-color:FFFFFF;
-            color:#FFF;
-            border-radius:50px;
-            text-align:center;
-            font-size:30px;
-            box-shadow: 2px 2px 3px #999;
-            z-index:100;
-        }
-
-        .my-float{
-            margin-top:16px;
-        }
-    </style>
-</head>
-
-<body>
-    <!-- WHATS APP SHARE BUTTON STARTING -->
-    <a
-      href="https://wa.me/919620395870?text=Hi%20There!" target="_blank"
-      class="floatWatsapp">
-      <img src="whatsapp.png"  alt="" height="50px" width="50px" />
-    </a>
-    <!-- WHATS APP SHARE BUTTON ENDING -->
-    <!--Floating Call BUTTON STARTING -->
-    <a
-      href="tel:+919620395870"
-      class="floatCallbutton">
-      <img src="call.png" alt="" height="50px" width="50px" />
-    </a>
-    <!-- Floating Call BUTTON ENDING -->
-
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner"></div>
-    </div>
-    <!-- Spinner End -->
-
-
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-dark px-5 d-none d-lg-block">
-        <div class="row gx-0">
-            <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-                <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <small class="me-3 text-light"><i class="fa fa-map-marker-alt me-2"></i>Vannapuram, Idukki, Kerala</small>
-                    <small class="me-3 text-light"><i class="fa fa-phone-alt me-2"></i>+91 9620395870</small>
-                    <small class="text-light"><i class="fa fa-envelope-open me-2"></i>mailid@example.com</small>
-                </div>
-            </div>
-            <div class="col-lg-4 text-center text-lg-end">
-                <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-twitter fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-instagram fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href=""><i class="fab fa-youtube fw-normal"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-
-    <!-- Navbar & Carousel Start -->
-    <div class="container-fluid position-relative p-0">
-        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-            <a href="index.html" class="navbar-brand p-0">
-                <!--<h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Hope In</h1>-->
-                <h1><img src="img/logo.png" width="75px" style="margin-right: 8px;" >Hope In</h1>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About Us</a>
-                    <a href="service.html" class="nav-item nav-link">Courses</a>
-                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
-                <!--<div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Blog</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                            <a href="detail.html" class="dropdown-item">Blog Detail</a>
-                        </div>
-                    </div> 
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                            <a href="feature.html" class="dropdown-item">Our features</a>
-                            <a href="team.html" class="dropdown-item">Team Members</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="quote.html" class="dropdown-item">Free Quote</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>-->
-                </div>
-                <!-- <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton> -->
-                <a href="contact.html" class="btn btn-primary py-2 px-4 ms-3">TALK TO TRAINER</a>
-            </div>
-        </nav>
-
+<?php
+include("header.php");
+?>
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="img/banner2.jpg" alt="Image">
+                    <img class="w-100" src="img/banner3.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">IELTS, OET & German</h5>
-                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Training</h1>
-                            <!-- <a href="https://web.whatsapp.com/" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">WhatsApp</a>
-                            <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a> -->
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Direct college payments. Verified institutions. No hidden costs.</h5>
+                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">23+ Years of Expert Admissions.</h1>
+                            <a href="https://wa.me/918086859526?text=Hi%20There!" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">WhatsApp</a>
+                            <a href="tel:+918086859526" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="img/banner9.jpg" alt="Image">
+                    <img class="w-100" src="img/banner31.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">IELTS, OET & German</h5>
-                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Training</h1>
-                            <!-- <a href="https://web.whatsapp.com/" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">WhatsApp</a>
-                            <a href="#" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a> -->
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Transparent admissions across India and abroad with 23+ years of expertise.</h5>
+                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Your Future, Our Responsibility.</h1>
+                            <a href="https://wa.me/918086859526?text=Hi%20There!" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">WhatsApp</a>
+                            <a href="tel:+918086859526" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a> 
                         </div>
                     </div>
                 </div>
@@ -225,7 +83,7 @@
                         </div>
                         <div class="ps-4">
                             <h5 class="text-primary mb-0">CALL US ANYTIME</h5>
-                            <h6 class="mb-0">+91 9620395870</h6>
+                            <h6 class="mb-0">+91 808 68 59 526</h6>
                         </div>
                     </div>
                 </div>
@@ -236,7 +94,7 @@
                         </div>
                         <div class="ps-4">
                             <h5 class="text-white mb-0">EMAIL US</h5>
-                            <h6 class="text-white mb-0">mailid@example.com</h6>
+                            <h6 class="text-white mb-0">info@gracepath.in</h6>
                         </div>
                     </div>
                 </div>
@@ -246,12 +104,58 @@
     <!-- Facts Start -->
 
 
+    <!-- About Start -->
+    <div class="container-fluid wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container ">
+            <div class="row g-5">
+                <div class="col-lg-7">
+                    <div class="section-title position-relative pb-3 mb-5">
+                        <h5 class="fw-bold text-primary text-uppercase">About Us</h5>
+                        <h1 class="mb-0">Your Future. Our Responsibility.</h1>
+                    </div>
+                    <p style="text-align: Justify" class="mb-4">Choosing the right college shouldn’t feel like a gamble. 
+                        Backed by two decades of industry expertise, we offer a student-first approach to admissions. 
+                        We believe in 100% transparency—meaning no hidden costs, no middleman fees, and only reputable, 
+                        legally approved institutions. From the first inquiry to finding the right hostel, we provide honest, 
+                        reliable guidance to help you step into your future with confidence.</p>
+                    <div class="row g-0 mb-3">
+                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Verified Institutions Only</h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Direct-to-College Payments</h5>
+                        </div>
+                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>End-to-End Enrollment Support</h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>24/7 Support</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                            <i class="fa fa-phone-alt text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Call to ask any question</h5>
+                            <h4 class="text-primary mb-0">+91 8086859526</h4>
+                        </div>
+                    </div>
+                    <a href="" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Request A Quote</a>
+                </div>
+                <div class="col-lg-5" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="img/about.jpg" style="object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
     <!-- Features Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Based On Your Requirement</h5>
-                <h1 class="mb-0">CHOOSE YOUR COURSE</h1>
+                <h5 class="fw-bold text-primary text-uppercase">Know</h5>
+                <h1 class="mb-0">WHY CHOOSE US?</h1>
             </div>
             <div class="row g-5">
                 <div class="col-lg-4">
@@ -260,15 +164,15 @@
                             <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
                                 <i class="fa fa-book text-white"></i>
                             </div>
-                            <h4>IELTS</h4>
-                            <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
+                            <h4>23+ Years of Expertise</h4>
+                            <p class="mb-0">Decades of proven experience providing reliable, ethical admissions guidance for India and abroad.</p>
                         </div>
                         <div class="col-12 wow zoomIn" data-wow-delay="0.6s" style="padding: 5% ;background-image: url(img/bb1.jpg); background-size: cover;">
                             <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
                                 <i class="fa fa-syringe text-white"></i>
                             </div>
-                            <h4>OET</h4>
-                            <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
+                            <h4>​Zero Commission Policy</h4>
+                            <p class="mb-0">We charge students nothing. No hidden costs, no processing fees—just honest support.</p>
                         </div>
                     </div>
                 </div>
@@ -283,15 +187,15 @@
                             <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
                                 <i class="fa fa-plane text-white"></i>
                             </div>
-                            <h4>GERMAN</h4>
-                            <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
+                            <h4>Direct & Transparent Payments</h4>
+                            <p class="mb-0">All tuition fees are paid directly to the institution with official billing for total financial security.</p>
                         </div>
                         <div class="col-12 wow zoomIn" data-wow-delay="0.8s" style="padding: 5% ;background-image: url(img/bb1.jpg); background-size: cover;">
                             <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
                                 <i class="fa fa-users text-white"></i>
                             </div>
-                            <h4>CAREER GUIDANCE</h4>
-                            <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
+                            <h4>Verified Institutions Only</h4>
+                            <p class="mb-0">We only partner with reputable, legally approved colleges to ensure your degree holds real value.</p>
                         </div>
                     </div>
                 </div>
@@ -301,8 +205,8 @@
     <!-- Features Start -->
 
 
-<!-- Study Abroad -->
-<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" style="background-color: #091E3E;">
+    <!-- Study Abroad -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" style="background-color: #091E3E;">
     <div class="container py-5">
         <!--<div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
             <h5 class="fw-bold text-primary text-uppercase">Latest Training</h5>
@@ -362,53 +266,8 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Study Abroad -->
-
-
-
-    
-
-    <!-- About Start -->
-    <!-- <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-7">
-                    <div class="section-title position-relative pb-3 mb-5">
-                        <h5 class="fw-bold text-primary text-uppercase">About Us</h5>
-                        <h1 class="mb-0">The Best Training With 10 Years of Experience</h1>
-                    </div>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor eirmod magna dolore erat amet</p>
-                    <div class="row g-0 mb-3">
-                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Award Winning</h5>
-                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Professional Staff</h5>
-                        </div>
-                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
-                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>24/7 Support</h5>
-                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Fair Prices</h5>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
-                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
-                            <i class="fa fa-phone-alt text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h5 class="mb-2">Call to ask any question</h5>
-                            <h4 class="text-primary mb-0">+91 9620395870</h4>
-                        </div>
-                    </div>
-                    <a href="quote.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Request A Quote</a>
-                </div>
-                <div class="col-lg-5" style="min-height: 500px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="img/about.jpg" style="object-fit: cover;">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- About End -->
+    </div>
+    <!-- Study Abroad -->
 
 
     <!-- Service Start -->
@@ -416,7 +275,7 @@
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <h5 class="fw-bold text-primary text-uppercase">HIGHLIGHTS</h5>
-                <h1 class="mb-0">Hope in Accademy</h1>
+                <h1 class="mb-0">GracePath Accademy</h1>
             </div>
             <div class="row g-5">
                 <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
@@ -424,8 +283,8 @@
                         <div class="service-icon">
                             <i class="fa fas fa-book-reader text-white"></i>
                         </div>
-                        <h4 class="mb-3">TEACHING</h4>
-                        <p class="m-0">Supports our students with activities, teaching resources and assessment tips.</p>
+                        <h4 class="mb-3">Student-First Mentorship</h4>
+                        <p class="m-0">We don't just process applications; we mentor students to help them choose courses that align with their natural strengths and career goals.</p>
                         <!-- <a class="btn btn-lg btn-primary rounded" href="">
                             <i class="bi bi-arrow-right"></i>
                         </a> -->
@@ -436,8 +295,8 @@
                         <div class="service-icon">
                             <i class="fa fas fa-chalkboard-teacher text-white"></i>
                         </div>
-                        <h4 style="color: white;" class="mb-3">MOCK TESTS</h4>
-                        <p style="color: wheat;" class="m-0">Regular IELTS Mock tests to keep a track of performance.</p>
+                        <h4 style="color: white;" class="mb-3">Simplified Enrollment</h4>
+                        <p style="color: wheat;" class="m-0">We handle the complex paperwork and regulatory requirements, making the transition from applicant to student seamless and stress-free.</p>
                         <!-- <a class="btn btn-lg btn-primary rounded" href="">
                             <i class="bi bi-arrow-right"></i>
                         </a> -->
@@ -448,8 +307,8 @@
                         <div class="service-icon">
                             <i class="fa fa-user-tie text-white"></i>
                         </div>
-                        <h4 class="mb-3">CLASSES</h4>
-                        <p class="m-0">Personalized classes according to students level. One on One sessions with RBA trainers.</p>
+                        <h4 class="mb-3">Tailored Campus Life</h4>
+                        <p class="m-0">Beyond academics, we assist in securing hostel and mess facilities that match your specific lifestyle and dietary preferences.</p>
                         <!-- <a class="btn btn-lg btn-primary rounded" href="">
                             <i class="bi bi-arrow-right"></i>
                         </a> -->
@@ -460,8 +319,8 @@
                         <div class="service-icon">
                             <i class="far fa-sticky-note text-white"></i>
                         </div>
-                        <h4 style="color: white;" class="mb-3">MATERIALS</h4>
-                        <p style="color: wheat;" class="m-0">Latest IELTS study materials and IELTS practice materials are available.</p>
+                        <h4 style="color: white;" class="mb-3">Unbiased Career Counseling</h4>
+                        <p style="color: wheat;" class="m-0">Our guidance is driven by your long-term success, ensuring you select a college that offers the right infrastructure, faculty, and placement records.</p>
                         <!-- <a class="btn btn-lg btn-primary rounded" href="">
                             <i class="bi bi-arrow-right"></i>
                         </a> -->
@@ -472,8 +331,8 @@
                         <div class="service-icon">
                             <i class="fas fa-piggy-bank text-white"></i>
                         </div>
-                        <h4 class="mb-3">AFFORDABLE</h4>
-                        <p class="m-0">IELTS fees for the Academic and General Training tests are the same.</p>
+                        <h4 class="mb-3">End-to-End Handholding</h4>
+                        <p class="m-0">From the very first counseling session to the day you step onto campus, our team is available to resolve every doubt and hurdle.</p>
                         <!-- <a class="btn btn-lg btn-primary rounded" href="">
                             <i class="bi bi-arrow-right"></i>
                         </a> -->
@@ -484,8 +343,8 @@
                         <div class="service-icon">
                             <i class="fas fa-receipt text-white"></i>
                         </div>
-                        <h4 style="color: white;" class="mb-3">EXAM REGISTRATION</h4>
-                        <p style="color: wheat;" class="m-0">IELTS Registration Centre of British Council IELTS and IDP IELTS.</p>
+                        <h4 style="color: white;" class="mb-3">Family-Centric Approach</h4>
+                        <p style="color: wheat;" class="m-0">We keep parents fully informed at every stage, providing the clarity and security needed when making a major life decision.</p>
                         <!-- <a class="btn btn-lg btn-primary rounded" href="">
                             <i class="bi bi-arrow-right"></i>
                         </a> -->
@@ -496,7 +355,7 @@
                     <div class="position-relative bg-primary rounded h-100 d-flex flex-column align-items-center justify-content-center text-center p-5">
                         <h3 class="text-white mb-3">Call Us For Quote</h3>
                         <p class="text-white mb-3">Clita ipsum magna kasd rebum at ipsum amet dolor justo dolor est magna stet eirmod</p>
-                        <h2 class="text-white mb-0">+91 9620395870</h2>
+                        <h2 class="text-white mb-0">+91 8086859526</h2>
                     </div>
                 </div>-->
             </div>
@@ -572,7 +431,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>  -->
     <!-- Pricing Plan End -->
 
 
@@ -600,7 +459,7 @@
                         </div>
                         <div class="ps-4">
                             <h5 class="mb-2">Call to ask any question</h5>
-                            <h4 class="text-primary mb-0">+91 9620395870</h4>
+                            <h4 class="text-primary mb-0">+91 8086859526</h4>
                         </div>
                     </div>
                 </div>
@@ -701,7 +560,7 @@
 
 
     <!-- Team Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible;animation-delay: 0.1s;animation-name: fadeInUp;background-image: url(img/bg1.png);background-size: cover;">
+    <!-- <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible;animation-delay: 0.1s;animation-name: fadeInUp;background-image: url(img/bg1.png);background-size: cover;">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <h5 class="fw-bold text-primary text-uppercase">Team Members</h5>
@@ -761,12 +620,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Team End -->
 
 
     <!-- Blog Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <!-- <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <h5 class="fw-bold text-primary text-uppercase">Latest Training</h5>
@@ -826,12 +685,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Blog Start -->
 
 
     <!-- Vendor Start -->
-    <!--<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5 mb-5">
             <div class="bg-white">
                 <div class="owl-carousel vendor-carousel">
@@ -847,117 +706,11 @@
                 </div>
             </div>
         </div>
-    </div>-->
+    </div>
     <!-- Vendor End -->
     
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="row gx-5">
-                <div class="col-lg-4 col-md-6 footer-about">
-                    <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
-                        <a href="index.html" class="navbar-brand">
-                            <h1 class="m-0 text-white"><i class="fa fa-user-tie me-2"></i>Hope In</h1>
-                        </a>
-                        <p class="mt-3 mb-4">Lorem diam sit erat dolor elitr et, diam lorem justo amet clita stet eos sit. Elitr dolor duo lorem, elitr clita ipsum sea. Diam amet erat lorem stet eos. Diam amet et kasd eos duo.</p>
-                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control border-white p-3" placeholder="Your Email">
-                                <button class="btn btn-dark">Sign Up</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-6">
-                    <div class="row gx-5">
-                        <div class="col-lg-4 col-md-12 pt-5 mb-5">
-                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                                <h3 class="text-light mb-0">Get In Touch</h3>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <i class="bi bi-geo-alt text-primary me-2"></i>
-                                <p class="mb-0">Vannapuram, Idukki, Kerala</p>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <i class="bi bi-envelope-open text-primary me-2"></i>
-                                <p class="mb-0">mailid@example.com</p>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <i class="bi bi-telephone text-primary me-2"></i>
-                                <p class="mb-0">+91 9620395870</p>
-                            </div>
-                            <div class="d-flex mt-4">
-                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square" href="#"><i class="fab fa-instagram fw-normal"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                                <h3 class="text-light mb-0">Quick Links</h3>
-                            </div>
-                            <div class="link-animated d-flex flex-column justify-content-start">
-                                <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
-                                <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
-                                <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
-                                <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Meet The Team</a>
-                                <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
-                                <a class="text-light" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                                <h3 class="text-light mb-0">Popular Links</h3>
-                            </div>
-                            <div class="link-animated d-flex flex-column justify-content-start">
-                                <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
-                                <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
-                                <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
-                                <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Meet The Team</a>
-                                <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
-                                <a class="text-light" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid text-white" style="background: #061429;">
-        <div class="container text-center">
-            <div class="row justify-content-end">
-                <div class="col-lg-8 col-md-6">
-                    <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
-                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">Hope In</a>. All Rights Reserved. 
-						
-						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "#/credit-removal". Thank you for your support. ***/-->
-						Designed by <a class="text-white border-bottom" href="#">EDEN</a></p>
-                        <!--<br>Distributed By: <a class="border-bottom" href="#" target="_blank">EDEN</a>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-</body>
-
-</html>
+<?php
+include("footer.php");
+?>

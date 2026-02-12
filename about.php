@@ -1,0 +1,237 @@
+<?php
+include("header.php");
+?>
+        <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+            <div class="row py-5">
+                <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                    <h1 class="display-4 text-white animated zoomIn">About Us</h1>
+                    <a href="" class="h5 text-white">Home</a>
+                    <i class="far fa-circle text-white px-2"></i>
+                    <a href="" class="h5 text-white">About</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Full Screen Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center justify-content-center">
+                    <div class="input-group" style="max-width: 600px;">
+                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                        <button class="btn btn-primary px-4">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Full Screen Search End -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible;animation-delay: 0.1s;animation-name: fadeInUp;background-image: url(img/bb1.jpg);background-size: cover;">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-7">
+                    <div class="section-title position-relative pb-3 mb-5">
+                        <h5 class="fw-bold text-primary text-uppercase">About Us</h5>
+                        <h1 class="mb-0">GracePath Academy</h1>
+                    </div>
+                    <p style="text-align:justify" class="mb-4">Guided by Experience. Governed by Integrity. 
+                        With over 23 years of excellence in education consultancy, we bridge the gap between ambition 
+                        and enrollment. We provide transparent, ethical admissions support for students seeking quality 
+                        education across India and abroad. Our philosophy is simple: we work for the student, not the 
+                        institution. By eliminating student commissions and ensuring all payments are made directly to 
+                        verified colleges, we’ve built a foundation of trust that thousands of families rely on. Your 
+                        future is a significant investment; we’re here to ensure it’s a secure one.</p>
+                    <div class="row g-0 mb-3">
+                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
+                            <h5 class="mb-3">
+                                <i class="fa fa-check text-primary me-3"></i>
+                                Verified Institutions Only</h5>
+                            <h5 class="mb-3">
+                                <i class="fa fa-check text-primary me-3"></i>
+                                End-to-End Enrollment Support</h5>
+                        </div>
+                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
+                            <h5 class="mb-3">
+                                <i class="fa fa-check text-primary me-3"></i>Direct-to-College Payments</h5>
+                            <h5 class="mb-3">
+                                <i class="fa fa-check text-primary me-3"></i>24/7 Support</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                            <a href="tel:+918086859526">
+                                <i class="fa fa-phone-alt text-white"></i>
+                            </a>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Call to ask any question</h5>
+                            <h4 class="text-primary mb-0">+91 8086859526</h4>
+                        </div>
+                    </div>
+                    <!--<a href="quote.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Request A Quote</a>-->
+                    <!-- vission mission start-->
+                    <div class="accordion" id="accordionExample"  data-wow-delay="0.9s">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button bg-dark" style="color:aliceblue; font-weight: bolder;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              VISSION
+                            </button>
+                          </h2>
+                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                              To be the most trusted bridge between global aspirations and academic reality, setting the gold standard for integrity in education consultancy.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed bg-header" style="color:aliceblue; font-weight: bolder;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              MISSION
+                            </button>
+                          </h2>
+                          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                To empower students with honest, accessible, and transparent admission pathways, ensuring every family can navigate the journey to higher education with confidence and peace of mind.
+                            </div>
+                          </div>
+                        </div>                        
+                      </div>
+                        
+                    <!-- vission mission end-->
+                </div>
+                <div class="col-lg-5" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="img/bb2.jpg" style="object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Team Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" style="background-color: #091E3E;">
+        <div class="container py-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h5 class="fw-bold text-primary text-uppercase">Team Members</h5>
+                <h1 class="mb-0" style="color: white;">Professional Stuffs Ready to Help Your Business</h1>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+                    <div class="team-item bg-light rounded overflow-hidden">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
+                            <div class="team-social">
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
+                                    <i class="fab fa-twitter fw-normal"></i>
+                                </a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
+                                    <i class="fab fa-facebook-f fw-normal"></i>
+                                </a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
+                                    <i class="fab fa-instagram fw-normal"></i>
+                                </a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
+                                    <i class="fab fa-linkedin-in fw-normal"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <h4 class="text-primary">Tom Kuriakose</h4>
+                            <p class="text-uppercase m-0">Director</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
+                    <div class="team-item bg-light rounded overflow-hidden">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
+                            <div class="team-social">
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
+                                    <i class="fab fa-twitter fw-normal"></i>
+                                </a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
+                                    <i class="fab fa-facebook-f fw-normal"></i>
+                                </a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
+                                    <i class="fab fa-instagram fw-normal"></i>
+                                </a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
+                                    <i class="fab fa-linkedin-in fw-normal"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <h4 class="text-primary">Sinu Tom</h4>
+                            <p class="text-uppercase m-0">Manager</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.9s">
+                    <div class="team-item bg-light rounded overflow-hidden">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
+                            <div class="team-social">
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
+                                    <i class="fab fa-twitter fw-normal"></i>
+                                </a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
+                                    <i class="fab fa-facebook-f fw-normal"></i>
+                                </a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
+                                    <i class="fab fa-instagram fw-normal"></i>
+                                </a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
+                                    <i class="fab fa-linkedin-in fw-normal"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <h4 class="text-primary">Ani Madapurath</h4>
+                            <p class="text-uppercase m-0">Director Admissions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+
+
+    <!-- Vendor Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" style="padding-bottom: 0rem !important;">
+        <div class="container py-5 mb-5">
+            <div class="bg-white">
+                <div class="owl-carousel vendor-carousel">
+                    <img src="img/IELTS-transparent-logo_1.png" alt="">
+                    <img src="img/oet-transparent-logo.png" alt="">
+                    <img src="img/idp-transparent-logo.png" alt="">
+                    <img src="img/british-council-1-logo.png" alt="">
+                    <!-- <img src="img/vendor-5.jpg" alt="">
+                    <img src="img/vendor-6.jpg" alt="">
+                    <img src="img/vendor-7.jpg" alt="">
+                    <img src="img/vendor-8.jpg" alt="">
+                    <img src="img/vendor-9.jpg" alt=""> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vendor End -->
+
+
+    <!-- Footer Start -->
+<?php
+include("footer.php");
+?>

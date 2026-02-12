@@ -1,4 +1,4 @@
-  =>  Template Name    : Hope In - Hope In Website Template
+  =>  Template Name    : GracePath - GracePath Website Template
 
   =>  Template Link    : #/startup-website-template
 
