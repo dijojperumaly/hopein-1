@@ -29,7 +29,7 @@ include("header.php");
                                 <input type="text" class="form-control border-0 bg-light px-4" placeholder="Applicant Name" style="height: 55px;">
                             </div>
                             <div class="col-md-6">
-                                <input type="number" class="form-control border-0 bg-light px-4" placeholder="Applicant Number" style="height: 55px;">
+                                <input type="number" class="form-control border-0 bg-light px-4" placeholder="Contact Number" style="height: 55px;">
                             </div>
                             <div class="col-md-6">
                                 <input type="email" class="form-control border-0 bg-light px-4" placeholder="Applicant Email" style="height: 55px;">
