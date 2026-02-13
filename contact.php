@@ -101,7 +101,7 @@ include("header.php");
                 </div>
                 <div class="col-lg-6 wow slideInUp" data-wow-delay="0.6s">
                     <iframe class="position-relative rounded w-100 h-100"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1964.6577290238386!2d76.7899505973084!3d9.990779583198417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b07c0288eff02e5%3A0x10ae8ecbb66954c7!2sTHOPPIL%20BUILDING!5e0!3m2!1sen!2sin!4v1680592708436!5m2!1sen!2sin"
+                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3934.3456412191586!2d76.76117197502555!3d9.565443590518896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOcKwMzMnNTUuNiJOIDc2wrA0NSc0OS41IkU!5e0!3m2!1sen!2sin!4v1770956208057!5m2!1sen!2sin"
                         frameborder="0" style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false"
                         tabindex="0"></iframe>
                 </div>

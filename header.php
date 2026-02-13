@@ -113,6 +113,6 @@
                     <a href="contact.html" class="nav-item nav-link">Contact Us</a>-->
                 </div>
                 <!-- <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton> -->
-                <a href="contact.html" class="btn btn-primary py-2 px-4 ms-3">Register With Us</a>
+                <a href="registration.php" class="btn btn-primary py-2 px-4 ms-3">Register With Us</a>
             </div>
         </nav>

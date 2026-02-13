@@ -79,7 +79,7 @@ include("header.php");
                             <h4 class="text-primary mb-0">+91 8086859526</h4>
                         </div>
                     </div>
-                    <!--<a href="quote.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Request A Quote</a>-->
+                    <!--<a href="quote.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Register With Us</a>-->
                     <!-- vission mission start-->
                     <div class="accordion" id="accordionExample"  data-wow-delay="0.9s">
                         <div class="accordion-item">

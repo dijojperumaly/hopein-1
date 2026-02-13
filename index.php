@@ -137,7 +137,7 @@ include("header.php");
                             <h4 class="text-primary mb-0">+91 8086859526</h4>
                         </div>
                     </div>
-                    <a href="" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Request A Quote</a>
+                    <a href="registration.php" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Register With Us</a>
                 </div>
                 <div class="col-lg-5" style="min-height: 500px;">
                     <div class="position-relative h-100">
@@ -441,7 +441,7 @@ include("header.php");
             <div class="row g-5">
                 <div class="col-lg-7">
                     <div class="section-title position-relative pb-3 mb-5">
-                        <h5 class="fw-bold text-primary text-uppercase">Request A Quote</h5>
+                        <h5 class="fw-bold text-primary text-uppercase">Register With Us</h5>
                         <h1 class="mb-0">Need A Free Quote? Please Feel Free to Contact Us</h1>
                     </div>
                     <div class="row gx-3">
@@ -485,7 +485,7 @@ include("header.php");
                                     <textarea class="form-control bg-light border-0" rows="3" placeholder="Message"></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-dark w-100 py-3" type="submit">Request A Quote</button>
+                                    <button class="btn btn-dark w-100 py-3" type="submit">Register With Us</button>
                                 </div>
                             </div>
                         </form>
