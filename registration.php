@@ -31,36 +31,122 @@ include("header.php");
                             <div class="col-md-6">
                                 <input type="number" class="form-control border-0 bg-light px-4" placeholder="Applicant Number" style="height: 55px;">
                             </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control border-0 bg-light px-4" placeholder="Applicant Email" style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Course" style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control border-0 bg-light px-4" placeholder="College" style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control border-0 bg-light px-4" placeholder="Parent Name" style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Parent Occupation" style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="number" class="form-control border-0 bg-light px-4" placeholder="Parent Number" style="height: 55px;">
+                            </div>
+                            <!-- <div class="col-12">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="College" style="height: 55px;">
+                            </div> -->
                             <div class="col-12">
-                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Subject" style="height: 55px;">
+                                <textarea class="form-control border-0 bg-light px-4 py-3" rows="4" placeholder="Address"></textarea>
+                            </div>
+                             <div class="col-md-6">
+                                <input type="date" class="form-control border-0 bg-light px-4" placeholder="Date of Birth" style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="number" class="form-control border-0 bg-light px-4" placeholder="Aadhar Number" style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Nationality" style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Religion" style="height: 55px;">
+                            </div>
+                             <div class="col-md-6">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Community" style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Name of Caste" style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Blood Group" style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="HSE School Name" style="height: 55px;">
+                            </div>
+                             <div class="col-md-6">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="HSE Board" style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="HSE Mark" style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Passout Year" style="height: 55px;">
                             </div>
                             <div class="col-12">
-                                <textarea class="form-control border-0 bg-light px-4 py-3" rows="4" placeholder="Message"></textarea>
+                                <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
                             </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
-                            </div>
-                        </div>
+                            </div>  
                     </form>
                 </div>
                 <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s">
                     <form>
                         <div class="row g-3">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Applicant Email" style="height: 55px;">
+                            <div class="col-md-3">
+                                10th Certificate
                             </div>
-                            <div class="col-md-6">
-                                <input type="email" class="form-control border-0 bg-light px-4" placeholder="Your Email" style="height: 55px;">
+                            <div class="col-md-9">
+                                <input type="file" class="form-control border-0 bg-light px-4" placeholder="Passout Year" style="height: 55px;">
+                            </div>
+
+
+                            <div class="col-md-3">
+                                12th Certificate
+                            </div>
+                            <div class="col-md-9">
+                                <input type="file" class="form-control border-0 bg-light px-4" placeholder="Passout Year" style="height: 55px;">
+                            </div>
+
+
+                            <div class="col-md-3">
+                                Aadhar Card
+                            </div>
+                            <div class="col-md-9">
+                                <input type="file" class="form-control border-0 bg-light px-4" placeholder="Passout Year" style="height: 55px;">
+                            </div>
+
+
+                            <div class="col-md-3">
+                                Passport Size Photo
+                            </div>
+                            <div class="col-md-9">
+                                <input type="file" class="form-control border-0 bg-light px-4" placeholder="Passout Year" style="height: 55px;">
                             </div>
                             <div class="col-12">
-                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Subject" style="height: 55px;">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Upload</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                           
+                            
+                            
+                            
+                            <!-- <div class="col-12">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Parent Name" style="height: 55px;">
                             </div>
                             <div class="col-12">
                                 <textarea class="form-control border-0 bg-light px-4 py-3" rows="4" placeholder="Message"></textarea>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
-                            </div>
+                            </div> -->
                         </div>
                     </form>
                 </div>
