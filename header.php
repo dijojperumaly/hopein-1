@@ -1,3 +1,8 @@
+
+<?php
+$current_script_name = basename($_SERVER['PHP_SELF']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,10 +94,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="index.php" class="nav-item nav-link active">Home</a>
-                    <a href="about.php" class="nav-item nav-link">About Us</a>
-                    <a href="services.php" class="nav-item nav-link">Our Services</a>
-                    <a href="contact.php" class="nav-item nav-link">Contact Us</a>
+                    <a href="index.php" class="nav-item nav-link <?php if($current_script_name=="index.php" || $current_script_name=="index" ){ echo "active"; } ?>">Home</a>
+                    <a href="about.php" class="nav-item nav-link <?php if($current_script_name=="about.php" || $current_script_name=="about"){ echo "active"; } ?>">About Us</a>
+                    <a href="services.php" class="nav-item nav-link <?php if($current_script_name=="services.php" || $current_script_name=="services"){ echo "active"; } ?>">Our Services</a>
+                    <a href="contact.php" class="nav-item nav-link <?php if($current_script_name=="contact.php" || $current_script_name=="contact"){ echo "active"; } ?>">Contact Us</a>
                 <!--<div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Blog</a>
                         <div class="dropdown-menu m-0">

@@ -507,50 +507,78 @@ include("header.php");
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.6s">
                 <div class="testimonial-item bg-light my-4">
                     <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="img/testimonial-1.jpg" style="width: 60px; height: 60px;" >
+                        <img class="img-fluid rounded" src="img/testimonial-2.jpg" style="width: 60px; height: 60px;" >
                         <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
+                            <h4 class="text-primary mb-1">Rohit M.</h4>
+                            <small class="text-uppercase">Kerala</small>
                         </div>
                     </div>
                     <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                    Grace Path helped me pursue my B.Sc. Nursing dream. Now in my final year in Karnataka, the hospital training has been excellent, and the facilities are great. My future feels brighter than ever!"
                     </div>
                 </div>
                 <div class="testimonial-item bg-light my-4">
                     <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="img/testimonial-2.jpg" style="width: 60px; height: 60px;" >
+                        <img class="img-fluid rounded" src="img/testimonial-1.jpg" style="width: 60px; height: 60px;" >
                         <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
+                            <h4 class="text-primary mb-1">Ananya K.</h4>
+                            <small class="text-uppercase">Bangalore</small>
                         </div>
                     </div>
                     <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                    The digital marketing internship with Grace Path gave me practical experience and exposure, I was able to secure a job in marketing right after!
+                    <br><br>
                     </div>
                 </div>
                 <div class="testimonial-item bg-light my-4">
                     <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
                         <img class="img-fluid rounded" src="img/testimonial-3.jpg" style="width: 60px; height: 60px;" >
                         <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
+                            <h4 class="text-primary mb-1">Neha S.</h4>
+                            <small class="text-uppercase">Hyderabad</small>
                         </div>
                     </div>
                     <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                    With Grace Path's guidance, I was able to join the Global MBA program in Paris. Their support throughout the application and visa process was invaluable!"-
+                    <br><br>
+                    </div>
+                </div>
+                <div class="testimonial-item bg-light my-4">
+                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
+                        <img class="img-fluid rounded" src="img/testimonial-5.jpg" style="width: 60px; height: 60px;" >
+                        <div class="ps-4">
+                            <h4 class="text-primary mb-1">Aarav P.</h4>
+                            <small class="text-uppercase">Chennai</small>
+                        </div>
+                    </div>
+                    <div class="pt-4 pb-5 px-5">
+                    Thanks to Grace Path, I secured admission to the B. Pharm program in Bangalore, and their loan documentation support made the process seamless and stress-free.
+                    <br><br>
                     </div>
                 </div>
                 <div class="testimonial-item bg-light my-4">
                     <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
                         <img class="img-fluid rounded" src="img/testimonial-4.jpg" style="width: 60px; height: 60px;" >
                         <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
+                            <h4 class="text-primary mb-1">Divya R.</h4>
+                            <small class="text-uppercase">Kochi</small>
                         </div>
                     </div>
                     <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                    Their personalized counselling helped me find the right MSc. in Finance & Accounting with CIMA in the UK. It perfectly aligns with my career goals!"
+                    <br><br>
+                    </div>
+                </div>
+                <div class="testimonial-item bg-light my-4">
+                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
+                        <img class="img-fluid rounded" src="img/testimonial-7.jpg" style="width: 60px; height: 60px;" >
+                        <div class="ps-4">
+                            <h4 class="text-primary mb-1">Aditya V.</h4>
+                            <small class="text-uppercase">Mumbai</small>
+                        </div>
+                    </div>
+                    <div class="pt-4 pb-5 px-5">
+                    With Grace Path' help, I enrolled in the B.Sc. Dialysis program in Bangalore. The college's placement support helped me secure a role as Dialysis technologist at a super speciality hospital in Bangalore.
                     </div>
                 </div>
             </div>
