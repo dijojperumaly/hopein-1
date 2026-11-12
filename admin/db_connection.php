@@ -9,7 +9,7 @@ function currentDateTime(){
 //local server
 $servername = "localhost";
 $username = "root";
-$password ="root";
+$password ="";
 $dbname = "db_gracepath";
 
 //production server 1

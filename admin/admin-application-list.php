@@ -5,7 +5,7 @@ include("adminsession.php");
 <html lang="en">
 <head>
     <?php include("admin-header-links.php"); ?>
-    <title>Vidyadhiraja-Application List</title>
+    <title>GracePath - Application / Registration List</title>
 </head>
 
 <body>
@@ -22,9 +22,9 @@ include("adminsession.php");
                     <ul>
                         <li><a href="admin-application-list.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <li class="active-bre"><a href="#">Application List</a>
+                        <li class="active-bre"><a href="#">Application / Registration List</a>
                         </li>
-                        <li class="page-back"><a href="index.php"><i class="fa fa-backward" aria-hidden="true"></i> Back to Website</a>
+                        <li class="page-back"><a href="../index.php"><i class="fa fa-backward" aria-hidden="true"></i> Back to Website</a>
                         </li>
                     </ul>
                 </div>
@@ -34,36 +34,28 @@ include("adminsession.php");
                         <div class="col-md-12">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Application List</h4>
-                                    <!--<p>All about students like name, student id, phone, email, country, city and more</p>-->
+                                    <h4>Application / Registration List</h4>
                                 </div>
                                 <div class="tab-inn">
+                                    <div class="alert alert-dismissible" role="alert" style="display:none;">
+                                        <strong></strong>
+                                        <p></p>
+                                    </div>
                                     <div class="table-responsive table-desi" id="table_div">
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Name</th>
-													<th>Application No</th>
-                                                    <th>Sex</th>
-													<th>Contact</th>
-													<th>Standard</th>
-													<th>Action</th>
+                                                    <th>Registration No</th>
+                                                    <th>Contact</th>
+                                                    <th>Course</th>
+                                                    <th>College</th>
+                                                    <th>Certificates</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td>
-                                                        <span class="label label-success">Acive</span>
-                                                    </td>
-													<td><a href="#!" target="_blank" class="ad-st-view"></a></td>
-													<td><a href="admin-page-edit.html" class="ad-st-view"></a></td>
-                                                </tr>
-                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -76,221 +68,216 @@ include("adminsession.php");
         <?php include("admin-fooder.php"); ?>
 
 <script>
+window.applicationsData = [];
+window.dataTableInstance = null;
+
+function loadImageAsDataURL(url) {
+    return new Promise(function(resolve) {
+        if (!url) {
+            resolve(null);
+            return;
+        }
+        var img = new Image();
+        img.crossOrigin = "Anonymous";
+        img.onload = function() {
+            try {
+                var canvas = document.createElement("canvas");
+                canvas.width = img.width;
+                canvas.height = img.height;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0);
+                resolve(canvas.toDataURL("image/png"));
+            } catch (e) {
+                resolve(null);
+            }
+        };
+        img.onerror = function() {
+            resolve(null);
+        };
+        img.src = url;
+    });
+}
+
 $(document).ready(function() {
 
+        function buildCertLinks(value) {
+            var links = [];
+            if (value.cert_10th && value.cert_10th !== "") {
+                links.push("<a href='../" + value.cert_10th + "' target='_blank' class='label label-info' style='display:inline-block;margin:2px;'>10th</a>");
+            }
+            if (value.cert_12th && value.cert_12th !== "") {
+                links.push("<a href='../" + value.cert_12th + "' target='_blank' class='label label-info' style='display:inline-block;margin:2px;'>12th</a>");
+            }
+            if (value.aadhar_file && value.aadhar_file !== "") {
+                links.push("<a href='../" + value.aadhar_file + "' target='_blank' class='label label-primary' style='display:inline-block;margin:2px;'>Aadhar</a>");
+            }
+            if (value.passport_photo && value.passport_photo !== "") {
+                links.push("<a href='../" + value.passport_photo + "' target='_blank' class='label label-success' style='display:inline-block;margin:2px;'>Photo</a>");
+            }
+            if (links.length === 0) {
+                return "<span class='text-muted'>None</span>";
+            }
+            return links.join(" ");
+        }
+
         window.all = function() {
-            // Ajax config
-            //alert("called all");
             $.ajax({
-                type: "GET", //we are using GET method to get all record from the server
-                url: 'admin-application-all.php', // get the route value
-                beforeSend: function() { //We add this before send to disable the button once we submit it so that we prevent the multiple click									
-                    //$(".se-pre-con").fadeIn("slow");									
+                type: "GET",
+                url: 'admin-application-all.php',
+                beforeSend: function() {
                     $("#table_div").html("<center><img src='images/loader.gif' width='50px'/></center>");
                 },
-                success: function(response) { //once the request successfully process to the server side it will return result here
-                    //alert(response);
-                    // Parse the json result
+                success: function(response) {
                     response = JSON.parse(response);
+                    window.applicationsData = response;
 
-                    //var html = '<table class="table table-striped" id="tablepaging">';
                     var html = '<table class="table table-hover tableData" id="tablepaging">';
    
-                    html += "<thead>"+                       
+                    html += "<thead>" +
                         "<tr>" +
                         "<th><input type='checkbox' name='selectAll' id='selectAll' class='select-checkbox' onclick='selectAll(this)' style='position: relative !important; opacity: 1 !important;left: unset !important;'></th>" +
-                        "<th style='display:none;'>Admissionyear</th>" +
+                        "<th style='display:none;'>Admission Year</th>" +
                         "<th>Name</th>" +
-                        "<th>Application No</th>" +
-                        "<th>Sex</th>" +
+                        "<th>Reg No</th>" +
                         "<th>Contact</th>" +
-                        "<th>Standard</th>" +                                                                       
-                        "<th  style='display:none;'>Aadhar No</th>" +
-                        "<th  style='display:none;'>Bloodgroup  </th>" +
-                        "<th  style='display:none;'>Email </th>" +
-                        "<th  style='display:none;'>fathername </th>" +
-                        "<th  style='display:none;'>Fatheroccupation </th>" +
-                        "<th  style='display:none;'>Address </th>" +
-                        "<th  style='display:none;'>Mothername </th>" +
-                        "<th  style='display:none;'>Motheroccupation </th>" +
-                        "<th  style='display:none;'>Guardianname </th>" +
-                        "<th  style='display:none;'>Guardianrelation </th>" +
-                        "<th  style='display:none;'>Guardianoccupation </th>" +
-                        "<th  style='display:none;'>Guardianaddress </th>" +
-                        "<th  style='display:none;'>Previousschool </th>" +
-                        "<th  style='display:none;'>Yearstuded </th>" +
-                        "<th  style='display:none;'>Standaredstuded </th>" +
-                        "<th  style='display:none;'>DateofAdmission </th>" +
-                        "<th  style='display:none;'>DateLeaving </th>" +
-                        "<th  style='display:none;'>Remarks </th>" +
-                        "<th  style='display:none;'>DateofBirth </th>" +
-                        "<th  style='display:none;'>Age </th>" +
-                        "<th  style='display:none;'>Religion </th>" +
-                        "<th  style='display:none;'>Caste </th>" +
-                        "<th  style='display:none;'>Placebirth </th>" +
-                        "<th  style='display:none;'>Nationality </th>" +
-                        "<th  style='display:none;'>State</th>" +
-                        "<th  style='display:none;'>Community</th>" +
-                        "<th  style='display:none;'>Mothertongue</th>" +
-                        "<th  style='display:none;'>VaccinationDate</th>" +
-                        "<th  style='display:none;'>Body Mark1</th>" +
-                        "<th  style='display:none;'>Body Mark2 </th>" +
-                        
-                        "<th></th>" +
-                        "<th></th>" +
-                        "<th></th>" +
+                        "<th>Course</th>" +
+                        "<th>College</th>" +
+                        "<th>Certificates</th>" +
+                        "<th style='display:none;'>Email</th>" +
+                        "<th style='display:none;'>Parent Name</th>" +
+                        "<th style='display:none;'>Parent Occupation</th>" +
+                        "<th style='display:none;'>Parent Contact</th>" +
+                        "<th style='display:none;'>Address</th>" +
+                        "<th style='display:none;'>Date of Birth</th>" +
+                        "<th style='display:none;'>Aadhar No</th>" +
+                        "<th style='display:none;'>Nationality</th>" +
+                        "<th style='display:none;'>Religion</th>" +
+                        "<th style='display:none;'>Community</th>" +
+                        "<th style='display:none;'>Caste</th>" +
+                        "<th style='display:none;'>Blood Group</th>" +
+                        "<th style='display:none;'>HSE School Name</th>" +
+                        "<th style='display:none;'>HSE Board</th>" +
+                        "<th style='display:none;'>HSE Mark</th>" +
+                        "<th style='display:none;'>Passout Year</th>" +
+                        "<th>View</th>" +
+                        "<th>Edit</th>" +
+                        "<th>Delete</th>" +
                         "</tr>" +
                         "</thead>" +
                         "<tbody>";
-                    // Check if there is available records
+
                     if (response.length) {
-                        //html += '<div class="list-group">';
-                        // Loop the parsed JSON
-                        $.each(response, function(key, value) {                              
-                            if(value.isreaded==0)                          {
-                                html += "<tr>" ;
-                            }else{
-                                html += "<tr style='background-color:#e3e8ea;'>" ;
+                        $.each(response, function(key, value) {
+                            if (value.isreaded == 0) {
+                                html += "<tr>";
+                            } else {
+                                html += "<tr style='background-color:#e3e8ea;'>";
                             }
-                            html += 
-                                "<td width='5%'>"+
-                                "<input type='checkbox' name='chkselect' id='chkselect' value='"+ value.appid +"' style='position: relative !important; opacity: 1 !important;left: unset !important;'></td>" +
-                                "<td width='20%' style='display:none;'><b>" + value.admissionyear +  "</td>" + 
-                                "<td width='20%'><a href='admin-application-details.php?id="+value.appid+"'><b>" + value.name +  "</b></a></td>" +                                            
-                                "<td width='20%'><a href='admin-application-details.php?id="+value.appid+"'>" +  value.appno + "</a></td>" +                                
-                                "<td width='10%'>" + value.sex + "</td>" +                                 
-                                "<td width='20%'>" + value.contact + ", <br>" + value.alternatecontact + "</td>" +                                            
-                                "<td width='10%'>"+ value.admissionstandard +"</td>" +    
-                                "<td width='10%' style='display:none;'>"+ value.aadharno +"</td>" +                              
-                                "<td width='10%' style='display:none;'>"+ value.bloodgroup +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.email +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.fathername +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.fatheroccupation +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.address +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.mothername +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.motheroccupation +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.guardianname +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.guardianrelation +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.guardianoccupation +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.guardianaddress +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.previousschool +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.yearstuded +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.standaredstuded +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.dateadmission +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.dateleaving +"</td>" +
-                                "<td width='10%' style='display:none;'>"+ value.remarks +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.dateofbirth +"</td>" +  
-                                "<td width='10%' style='display:none;'>"+ value.age +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.religion +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.caste +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.placebirth +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.nationality +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.state +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.community +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.mothertongue +"</td>" + 
-                                "<td width='10%' style='display:none;'>"+ value.vaccinationdate +"</td>" +
-                                "<td width='10%' style='display:none;'>"+ value.bodymark1 +"</td>" +
-                                "<td width='10%' style='display:none;'>"+ value.bodymark2 +"</td>" +                         
-                                "<td>" +                                            
-                                "<a href='admin-application-details.php?id="+value.appid+"' class='ad-st-view'>view</a></td>" +
-                                "<td>" +                                            
-                                "<a href='admin-application-edit.php?id="+value.appid+"' class='ad-st-edit'>edit</a></td>" +
-                                "<td>" +                                            
-                                "<a href='#' class='ad-st-delete' onClick='deleteItem(" + value.appid + ",this)'>delete</a></td>" +
+                            var contactDisplay = value.contact || "";
+                            if (value.parentcontact && value.parentcontact !== "") {
+                                contactDisplay += (contactDisplay ? ", <br>" : "") + value.parentcontact;
+                            }
+                            html +=
+                                "<td width='4%'>" +
+                                "<input type='checkbox' name='chkselect' id='chkselect' value='" + value.appid + "' style='position: relative !important; opacity: 1 !important;left: unset !important;'></td>" +
+                                "<td style='display:none;'><b>" + value.admissionyear + "</b></td>" +
+                                "<td width='16%'><a href='admin-application-details.php?id=" + value.appid + "'><b>" + (value.name || "-") + "</b></a></td>" +
+                                "<td width='14%'><a href='admin-application-details.php?id=" + value.appid + "'>" + value.regno + "</a></td>" +
+                                "<td width='14%'>" + contactDisplay + "</td>" +
+                                "<td width='12%'>" + value.course + "</td>" +
+                                "<td width='12%'>" + value.college + "</td>" +
+                                "<td width='16%'>" + buildCertLinks(value) + "</td>" +
+                                "<td style='display:none;'>" + value.email + "</td>" +
+                                "<td style='display:none;'>" + value.parentname + "</td>" +
+                                "<td style='display:none;'>" + value.parentoccupation + "</td>" +
+                                "<td style='display:none;'>" + value.parentcontact + "</td>" +
+                                "<td style='display:none;'>" + value.address + "</td>" +
+                                "<td style='display:none;'>" + value.dateofbirth + "</td>" +
+                                "<td style='display:none;'>" + value.aadhar + "</td>" +
+                                "<td style='display:none;'>" + value.nationality + "</td>" +
+                                "<td style='display:none;'>" + value.religion + "</td>" +
+                                "<td style='display:none;'>" + value.community + "</td>" +
+                                "<td style='display:none;'>" + value.cast + "</td>" +
+                                "<td style='display:none;'>" + value.bloodgroup + "</td>" +
+                                "<td style='display:none;'>" + value.hseschoolname + "</td>" +
+                                "<td style='display:none;'>" + value.hseboard + "</td>" +
+                                "<td style='display:none;'>" + value.hsemark + "</td>" +
+                                "<td style='display:none;'>" + value.passoutyear + "</td>" +
+                                "<td><a href='admin-application-details.php?id=" + value.appid + "' class='ad-st-view'>view</a></td>" +
+                                "<td><a href='admin-application-edit.php?id=" + value.appid + "' class='ad-st-edit'>edit</a></td>" +
+                                "<td><a href='#' class='ad-st-delete' onClick='deleteItem(" + value.appid + ",this)'>delete</a></td>" +
                                 "</tr>";
                         });
                         html += "</tbody></table>";
-                        html += '<p><input type="button" name="btndeleteall" id="btndeleteall" class="btn btn-danger" value="Delete" onclick="getSelected(this)" style="float:left;margin:2px 6px;"></p>';                        
-                        //html += '</div>';
+                        html += '<div style="margin-top: 10px; overflow: hidden;">' +
+                                '<input type="button" name="btndeleteall" id="btndeleteall" class="btn btn-danger" value="Delete Selected" onclick="getSelected(this)" style="float:left;margin:2px 6px;">' +
+                                '<input type="button" name="btndownloadpdf" id="btndownloadpdf" class="btn btn-primary" value="Download Selected Candidates PDF" onclick="downloadSelectedCandidatesPDF(this)" style="float:left;margin:2px 6px;">' +
+                                '</div>';
                     } else {
-                        html += '<div class="alert alert-warning">';
-                        html += 'No records found!';
-                        html += '</div>';
+                        html += '</tbody></table>';
+                        html += '<div class="alert alert-warning">No records found!</div>';
                     }
                     
                     $("#table_div").html(html);
-                    //$("#tablepaging").html(html);
                     $(".se-pre-con").fadeOut("slow");
-                    tablePagination();
+                    if (response.length) {
+                        tablePagination();
+                    }
                 },
                 complete: function(data) {
-                    // Hide image container
                     $(".se-pre-con").fadeOut("slow");
                 }
             });
         }
 
         window.tablePagination = function() {
-            //new DataTable('#tablepaging');
-            //$('#tablepaging').DataTable();
-            new DataTable('#tablepaging', {
+            window.dataTableInstance = new DataTable('#tablepaging', {
                 layout: {
-                    extend: "pdf",
-                    exportOptions: {
-                        columns: [1,2]
-                    },
                     topStart: {
-                        //buttons: ['pageLength','copy', 'excel', 'pdf','print']// 'colvis'],
                         buttons: [
                             'pageLength',
                             {
                                 extend: 'copyHtml5',
                                 exportOptions: {
-                                    //columns: [0, ':visible']
-                                    columns: [1, 2, 3, 4, 5]
+                                    columns: [2, 3, 4, 5, 6]
                                 }
                             },
                             {
                                 extend: 'excelHtml5',
                                 exportOptions: {
-                                    columns: [1, 2, 3, 4, 5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]
+                                    columns: [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
                                 }
                             },
                             {
                                 extend: 'pdfHtml5',
+                                text: 'Table PDF',
                                 exportOptions: {
-                                    columns: [2,3,4,5,7,25]
+                                    columns: [2, 3, 4, 5, 6, 13]
                                 }
                             },
-                            
+                            {
+                                text: 'Download Candidates PDF (1 Page / Candidate)',
+                                action: function (e, dt, node, config) {
+                                    downloadSelectedCandidatesPDF(node[0]);
+                                }
+                            }
                         ]
-                    },
-                    
-                    
+                    }
                 },
-                
                 responsive: true,
-                columnDefs: [ {
-                    'targets': [0,6,7,8], 
-                    'orderable': false, 
-                }],
-                
+                columnDefs: [{
+                    'targets': [0, 7, 24, 25, 26],
+                    'orderable': false
+                }]
             });
-            //$('.dataTables_length').addClass('bs-select');
-            /*var table = $('#tablepaging').DataTable({
-                rowReorder: false,
-                pageLength: 10,
-                sPaginationType: "first_last_numbers", //"full", //"simple_numbers" //"simple",	
-                stateSave: true,
-                "bDestroy": true, 
-                "order": [], //Initial no order.
-                "aaSorting": [],
-                columnDefs: [ {
-                    'targets': [0], 
-                    'orderable': false, 
-                }],                            
-            }); */                
-            
         }
 
-    window.deleteItem=function (id, obj,delbtn=0) {
-        //alert(id);
-        let caption=obj.value;
+    window.deleteItem = function (id, obj, delbtn=0) {
+        let caption = obj.value;
         bootbox.confirm({
-            //title: "Delete",
             onEscape: true,
             size: 'small',
-            message: 'Are you sure? do you want to delete!',
+            message: 'Are you sure you want to delete this application?',
             buttons: {
                 confirm: {
                     label: 'Yes',
@@ -303,59 +290,46 @@ $(document).ready(function() {
             },
             callback: function(result) {
                 if (result) {
-                    obj.value="Processing...";
-                    obj.disabled=true;
+                    obj.value = "Processing...";
+                    obj.disabled = true;
                     $.ajax({
-                        type: "GET", //we are using POST method to submit the data to the server side
-                        url: "admin-application-delete.php?delid=" + id, // get the route value								
-                        //data: JSON.stringify({delcid:id}), // our serialized array data for server side
-                        timeout: 100,
-                        async: false,
-                        beforeSend: function() { //We add this before send to disable the button once we submit it so that we prevent the multiple click
-                            //$this.attr('disabled', true).html("Processing...");
+                        type: "GET",
+                        url: "admin-application-delete.php?delid=" + id,
+                        timeout: 10000,
+                        beforeSend: function() {
                             $(".se-pre-con").fadeIn("slow");
                         },
-                        success: function(response) { //once the request successfully process to the server side it will return result here
-                            //$this.attr('disabled', false).html($caption);
-                            //alert(response);
+                        success: function(response) {
                             try {
                                 var json = $.parseJSON(response);
-                                //var json = JSON.parse(response);
                                 var res_status = json["status"];
                                 if (res_status == "success") {
-                                    ShowAlert("", "Successfully Deleted ", "success");
+                                    ShowAlert("", "Successfully Deleted", "success");
                                     $(obj).closest('tr').remove();
-                                    if(delbtn==1){
+                                    if (delbtn == 1) {
                                         all();
-                                        //tablePagination();
                                     }
-                                    
-
                                 } else {
-                                    ShowPopUpAlert("", "Not saved! please enter correct data", "danger");
-                                    obj.value=caption;
-                                    obj.disabled=false;
+                                    ShowAlert("", "Could not delete record", "danger");
+                                    obj.value = caption;
+                                    obj.disabled = false;
                                 }
                             } catch (e) {
-                                ShowPopUpAlert("", "Not saved! please enter correct data/try after sometime", "danger");
-                                obj.value=caption;
-                                obj.disabled=false;
+                                ShowAlert("", "Error deleting record", "danger");
+                                obj.value = caption;
+                                obj.disabled = false;
                             }
-
-                            // Reset form
-
                         },
                         complete: function(data) {
-                            // Hide image container
                             $(".se-pre-con").fadeOut("slow");
-                            obj.value=caption;
-                            obj.disabled=false;
+                            obj.value = caption;
+                            obj.disabled = false;
                         },
                         error: function(XMLHttpRequest, textStatus, errorThrown) {
-                            ShowPopUpAlert(textStatus, errorThrown, "danger");
+                            ShowAlert(textStatus, errorThrown, "danger");
                             $(".se-pre-con").fadeOut("slow");
-                            obj.value=caption;
-                            obj.disabled=false;
+                            obj.value = caption;
+                            obj.disabled = false;
                         }
                     });
                 }
@@ -364,114 +338,359 @@ $(document).ready(function() {
     }
 
     all();
-    //tablePagination();
 });
 
-function getSelected(obj){
-    var pid="0";    
-    $('input[name="chkselect"]:checked').each(function() {
-    pid+=","+this.value;
-    });	
-   
-    if(pid!="0"){
-        deleteItem(pid,obj,1);
-    }else{
-        bootbox.alert('Please select delete item!');
-        //alert("select item");
+function getSelectedIds() {
+    var selectedIds = [];
+    if (window.dataTableInstance) {
+        window.dataTableInstance.$('input[name="chkselect"]:checked').each(function() {
+            selectedIds.push(String(this.value));
+        });
+    } else {
+        $('input[name="chkselect"]:checked').each(function() {
+            selectedIds.push(String(this.value));
+        });
     }
+    return selectedIds;
+}
 
+function getSelected(obj) {
+    var selectedIds = getSelectedIds();
+    if (selectedIds.length > 0) {
+        deleteItem("0," + selectedIds.join(","), obj, 1);
+    } else {
+        bootbox.alert('Please select at least one item to delete!');
+    }
 }
 
 function selectAll(obj) {
-    //e.preventDefault();
-    var selectedIds = [];        
-    if(obj.checked){
-    $('#tablepaging').find('input:checkbox').prop('checked', true);
-    }else{
-    $('#tablepaging').find('input:checkbox').prop('checked', false);
+    var isChecked = obj.checked;
+    if (window.dataTableInstance) {
+        window.dataTableInstance.$('input[name="chkselect"]').prop('checked', isChecked);
+    } else {
+        $('#tablepaging').find('input:checkbox').prop('checked', isChecked);
+    }
+}
+
+async function downloadSelectedCandidatesPDF(btnObj) {
+    var selectedIds = getSelectedIds();
+    if (selectedIds.length === 0) {
+        bootbox.alert('Please select at least one candidate to download PDF!');
+        return;
     }
 
-}
-function getStatus(statusvalue,obj){
-    var pid="0";
-    $('input[name="chkselect"]:checked').each(function() {
-    pid+=","+this.value;
-    });	
-    let productstatus=$("#productstatus").val();
-    if(pid!="0"){
-    //alert(productstatus+" "+pid);
-    bootbox.confirm({
-    //title: "Delete",
-    onEscape: true,
-    size: 'small',
-    message: 'Are you sure? do you want to update the product status!',
-    buttons: {
-        confirm: {
-            label: 'Yes',
-            className: 'btn-danger'
-        },
-        cancel: {
-            label: 'No',
-            className: 'btn-success'
-        }
-    },
-    callback: function(result) {                
-        if (result) {
-            obj.value="Processing...";
-            obj.disabled=true;
-            $.ajax({
-                type: "GET", //we are using POST method to submit the data to the server side
-                url: "product_status_update.php?id=" + pid + "&productstatus="+productstatus, // get the route value								
-                //data: JSON.stringify({delcid:id}), // our serialized array data for server side
-                timeout: 100,
-                async: false,
-                beforeSend: function() { //We add this before send to disable the button once we submit it so that we prevent the multiple click
-                    //$this.attr('disabled', true).html("Processing...");
-                    $(".se-pre-con").fadeIn("slow");
-                },
-                success: function(response) { //once the request successfully process to the server side it will return result here
-                    //$this.attr('disabled', false).html($caption);
-                    //alert(response);
-                    try {
-                        var json = $.parseJSON(response);
-                        //var json = JSON.parse(response);
-                        var res_status = json["status"];
-                        if (res_status == "success") {
-                            ShowAlert("", "Successfully Updated ", "success");
-                            $(obj).closest('tr').remove();
-                            all();
-                            tablePagination();
+    var selectedCandidates = window.applicationsData.filter(function(item) {
+        return selectedIds.indexOf(String(item.appid)) !== -1;
+    });
 
-                        } else {
-                            ShowPopUpAlert("", "Not saved! please enter correct data", "danger");
-                        }
-                    } catch (e) {
-                        ShowPopUpAlert("", "Not saved! please enter correct data/try after sometime", "danger");
-                    }
+    if (selectedCandidates.length === 0) {
+        bootbox.alert('Selected candidate data not found!');
+        return;
+    }
 
-                    // Reset form
+    var origLabel = "";
+    if (btnObj && btnObj.value) {
+        origLabel = btnObj.value;
+        btnObj.value = "Generating PDF...";
+        btnObj.disabled = true;
+    }
 
-                },
-                complete: function(data) {
-                    // Hide image container
-                    $(".se-pre-con").fadeOut("slow");
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    ShowPopUpAlert(textStatus, errorThrown, "danger");
-                    $(".se-pre-con").fadeOut("slow");
-                }
+    try {
+        var logoDataUrl = await loadImageAsDataURL('../img/logo.png');
+        var content = [];
+
+        for (var i = 0; i < selectedCandidates.length; i++) {
+            var c = selectedCandidates[i];
+            var photoDataUrl = null;
+            if (c.passport_photo && c.passport_photo !== "") {
+                photoDataUrl = await loadImageAsDataURL('../' + c.passport_photo);
+            }
+
+            // Header columns
+            var headerCols = [];
+            if (logoDataUrl) {
+                headerCols.push({
+                    image: logoDataUrl,
+                    width: 55,
+                    alignment: 'left'
+                });
+            }
+            headerCols.push({
+                stack: [
+                    { text: 'GRACEPATH EDUCATION', fontSize: 18, bold: true, color: '#091E3E', alignment: 'center' },
+                    { text: 'Ponkunnam, Kottayam, Kerala | Phone: +91 8086859526 | Email: info@gracepath.in', fontSize: 9, color: '#555555', alignment: 'center', margin: [0, 3, 0, 0] },
+                    { text: 'CANDIDATE APPLICATION / REGISTRATION FORM', fontSize: 12, bold: true, color: '#06A3DA', alignment: 'center', margin: [0, 6, 0, 0] }
+                ],
+                width: '*'
             });
+
+            content.push({
+                columns: headerCols,
+                margin: [0, 0, 0, 8]
+            });
+
+            content.push({
+                canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1.5, lineColor: '#06A3DA' }],
+                margin: [0, 0, 0, 12]
+            });
+
+            // Registration Meta + Photo Row
+            var photoBlock;
+            if (photoDataUrl) {
+                photoBlock = {
+                    image: photoDataUrl,
+                    width: 75,
+                    height: 90,
+                    alignment: 'right'
+                };
+            } else {
+                photoBlock = {
+                    table: {
+                        widths: [75],
+                        heights: [80],
+                        body: [[{ text: 'Passport\nPhoto', alignment: 'center', fontSize: 9, color: '#888888', margin: [0, 28, 0, 0] }]]
+                    },
+                    alignment: 'right'
+                };
+            }
+
+            content.push({
+                columns: [
+                    {
+                        width: '*',
+                        table: {
+                            widths: [110, '*'],
+                            body: [
+                                [{ text: 'Registration No:', bold: true, fontSize: 10 }, { text: c.regno || '-', fontSize: 10, bold: true, color: '#091E3E' }],
+                                [{ text: 'Academic Year:', bold: true, fontSize: 10 }, { text: String(c.admissionyear || '-'), fontSize: 10 }],
+                                [{ text: 'Course Applied:', bold: true, fontSize: 10 }, { text: c.course || '-', fontSize: 10, bold: true }],
+                                [{ text: 'College:', bold: true, fontSize: 10 }, { text: c.college || '-', fontSize: 10 }],
+                                [{ text: 'Submitted On:', bold: true, fontSize: 10 }, { text: c.createdat || '-', fontSize: 10 }]
+                            ]
+                        },
+                        layout: 'noBorders'
+                    },
+                    {
+                        width: 90,
+                        stack: [photoBlock]
+                    }
+                ],
+                margin: [0, 0, 0, 12]
+            });
+
+            // Section 1: Personal Details
+            content.push({
+                text: '1. Applicant Personal Details',
+                style: 'sectionHeader'
+            });
+
+            content.push({
+                table: {
+                    widths: ['23%', '27%', '23%', '27%'],
+                    body: [
+                        [
+                            { text: 'Applicant Name', style: 'fieldLabel' },
+                            { text: c.name || '-', style: 'fieldValue' },
+                            { text: 'Contact Number', style: 'fieldLabel' },
+                            { text: c.contact || '-', style: 'fieldValue' }
+                        ],
+                        [
+                            { text: 'Email Address', style: 'fieldLabel' },
+                            { text: c.email || '-', style: 'fieldValue' },
+                            { text: 'Date of Birth', style: 'fieldLabel' },
+                            { text: c.dateofbirth || '-', style: 'fieldValue' }
+                        ],
+                        [
+                            { text: 'Aadhar Number', style: 'fieldLabel' },
+                            { text: c.aadhar || '-', style: 'fieldValue' },
+                            { text: 'Blood Group', style: 'fieldLabel' },
+                            { text: c.bloodgroup || '-', style: 'fieldValue' }
+                        ],
+                        [
+                            { text: 'Nationality', style: 'fieldLabel' },
+                            { text: c.nationality || '-', style: 'fieldValue' },
+                            { text: 'Religion', style: 'fieldLabel' },
+                            { text: c.religion || '-', style: 'fieldValue' }
+                        ],
+                        [
+                            { text: 'Community', style: 'fieldLabel' },
+                            { text: c.community || '-', style: 'fieldValue' },
+                            { text: 'Caste', style: 'fieldLabel' },
+                            { text: c.cast || '-', style: 'fieldValue' }
+                        ],
+                        [
+                            { text: 'Address', style: 'fieldLabel' },
+                            { text: (c.address || '-').replace(/\r\n/g, ', ').replace(/\n/g, ', '), colSpan: 3, style: 'fieldValue' },
+                            {},
+                            {}
+                        ]
+                    ]
+                },
+                layout: {
+                    hLineColor: function() { return '#CCCCCC'; },
+                    vLineColor: function() { return '#CCCCCC'; }
+                },
+                margin: [0, 0, 0, 12]
+            });
+
+            // Section 2: Parent Details
+            content.push({
+                text: '2. Parent / Guardian Details',
+                style: 'sectionHeader'
+            });
+
+            content.push({
+                table: {
+                    widths: ['23%', '27%', '23%', '27%'],
+                    body: [
+                        [
+                            { text: 'Parent Name', style: 'fieldLabel' },
+                            { text: c.parentname || '-', style: 'fieldValue' },
+                            { text: 'Parent Occupation', style: 'fieldLabel' },
+                            { text: c.parentoccupation || '-', style: 'fieldValue' }
+                        ],
+                        [
+                            { text: 'Parent Contact', style: 'fieldLabel' },
+                            { text: c.parentcontact || '-', colSpan: 3, style: 'fieldValue' },
+                            {},
+                            {}
+                        ]
+                    ]
+                },
+                layout: {
+                    hLineColor: function() { return '#CCCCCC'; },
+                    vLineColor: function() { return '#CCCCCC'; }
+                },
+                margin: [0, 0, 0, 12]
+            });
+
+            // Section 3: Academic / HSE Details
+            content.push({
+                text: '3. Academic (HSE) Details',
+                style: 'sectionHeader'
+            });
+
+            content.push({
+                table: {
+                    widths: ['23%', '27%', '23%', '27%'],
+                    body: [
+                        [
+                            { text: 'HSE School Name', style: 'fieldLabel' },
+                            { text: c.hseschoolname || '-', style: 'fieldValue' },
+                            { text: 'HSE Board', style: 'fieldLabel' },
+                            { text: c.hseboard || '-', style: 'fieldValue' }
+                        ],
+                        [
+                            { text: 'HSE Mark', style: 'fieldLabel' },
+                            { text: c.hsemark || '-', style: 'fieldValue' },
+                            { text: 'Passout Year', style: 'fieldLabel' },
+                            { text: c.passoutyear || '-', style: 'fieldValue' }
+                        ]
+                    ]
+                },
+                layout: {
+                    hLineColor: function() { return '#CCCCCC'; },
+                    vLineColor: function() { return '#CCCCCC'; }
+                },
+                margin: [0, 0, 0, 12]
+            });
+
+            // Section 4: Certificates Submitted
+            content.push({
+                text: '4. Submitted Certificates & Documents',
+                style: 'sectionHeader'
+            });
+
+            content.push({
+                table: {
+                    widths: ['23%', '27%', '23%', '27%'],
+                    body: [
+                        [
+                            { text: '10th Certificate', style: 'fieldLabel' },
+                            { text: c.cert_10th ? 'Uploaded' : 'Not Uploaded', style: 'fieldValue', color: c.cert_10th ? '#198754' : '#777777' },
+                            { text: '12th Certificate', style: 'fieldLabel' },
+                            { text: c.cert_12th ? 'Uploaded' : 'Not Uploaded', style: 'fieldValue', color: c.cert_12th ? '#198754' : '#777777' }
+                        ],
+                        [
+                            { text: 'Aadhar Card', style: 'fieldLabel' },
+                            { text: c.aadhar_file ? 'Uploaded' : 'Not Uploaded', style: 'fieldValue', color: c.aadhar_file ? '#198754' : '#777777' },
+                            { text: 'Passport Photo', style: 'fieldLabel' },
+                            { text: c.passport_photo ? 'Uploaded' : 'Not Uploaded', style: 'fieldValue', color: c.passport_photo ? '#198754' : '#777777' }
+                        ]
+                    ]
+                },
+                layout: {
+                    hLineColor: function() { return '#CCCCCC'; },
+                    vLineColor: function() { return '#CCCCCC'; }
+                },
+                margin: [0, 0, 0, 18]
+            });
+
+            // Declaration & Signature Footer
+            content.push({
+                text: 'Declaration: I hereby declare that the particulars entered in this application form are true and correct to the best of my knowledge.',
+                fontSize: 9,
+                italics: true,
+                color: '#444444',
+                margin: [0, 5, 0, 30]
+            });
+
+            var footerItem = {
+                columns: [
+                    { text: 'Date: ___________________', fontSize: 10, alignment: 'left' },
+                    { text: 'Signature of Applicant: ___________________', fontSize: 10, alignment: 'right' }
+                ]
+            };
+
+            if (i < selectedCandidates.length - 1) {
+                footerItem.pageBreak = 'after';
+            }
+
+            content.push(footerItem);
+        }
+
+        var docDefinition = {
+            pageSize: 'A4',
+            pageMargins: [40, 35, 40, 35],
+            content: content,
+            styles: {
+                sectionHeader: {
+                    fontSize: 11,
+                    bold: true,
+                    color: '#FFFFFF',
+                    fillColor: '#091E3E',
+                    margin: [0, 4, 0, 6]
+                },
+                fieldLabel: {
+                    fontSize: 9.5,
+                    bold: true,
+                    color: '#222222',
+                    fillColor: '#F4F6F9',
+                    margin: [4, 4, 4, 4]
+                },
+                fieldValue: {
+                    fontSize: 9.5,
+                    color: '#000000',
+                    margin: [4, 4, 4, 4]
+                }
+            }
+        };
+
+        var fileName = selectedCandidates.length === 1
+            ? 'GracePath_Application_' + (selectedCandidates[0].regno || selectedCandidates[0].appid) + '.pdf'
+            : 'GracePath_Selected_Applications_' + selectedCandidates.length + '.pdf';
+
+        pdfMake.createPdf(docDefinition).download(fileName);
+    } catch (err) {
+        bootbox.alert('Error generating PDF: ' + err.message);
+    } finally {
+        if (btnObj && origLabel) {
+            btnObj.value = origLabel;
+            btnObj.disabled = false;
         }
     }
-});
-}else{
-    bootbox.alert('Please select update item!');
-}
-
 }
 </script>
 
 </body>
-
-
 </html>

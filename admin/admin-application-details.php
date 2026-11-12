@@ -1,49 +1,67 @@
 <?php 
 include_once("db_connection.php");
 include("adminsession.php");
-if(isset($_REQUEST["id"])){
-    $id=$_REQUEST["id"];
-    //echo $id;
-    $sql = "SELECT  appid,
+
+$appid = 0;
+$admissionyear = "";
+$regno = "";
+$name = "";
+$contact = "";
+$email = "";
+$course = "";
+$college = "";
+$parentname = "";
+$parentoccupation = "";
+$parentcontact = "";
+$address = "";
+$dateofbirth = "";
+$aadhar = "";
+$nationality = "";
+$religion = "";
+$community = "";
+$cast = "";
+$bloodgroup = "";
+$hseschoolname = "";
+$hseboard = "";
+$hsemark = "";
+$passoutyear = "";
+$cert_10th = "";
+$cert_12th = "";
+$aadhar_file = "";
+$passport_photo = "";
+$createdat = "";
+
+if (isset($_REQUEST["id"])) {
+    $id = intval($_REQUEST["id"]);
+    $sql = "SELECT
+        appid,
         admissionyear,
-        appno,        
+        regno,
         name,
-        regionallanguage, 
-        sex,
-        aadharno,
-        bloodgroup,
-        admissionstandard,	
         contact,
-        alternatecontact,
         email,
-        fathername,
-        fatheroccupation,
+        course,
+        college,
+        parentname,
+        parentoccupation,
+        parentcontact,
         address,
-        mothername,
-        motheroccupation,
-        guardianname,
-        guardianrelation,
-        guardianoccupation,
-        guardianaddress,
-        previousschool,
-        yearstuded,
-        standaredstuded,
-        dateadmission,
-        dateleaving,
-        remarks,
         dateofbirth,
-        age,
-        religion,
-        caste,
-        placebirth,
+        aadhar,
         nationality,
-        state,
+        religion,
         community,
-        mothertongue,
-        tcno,
-        vaccinationdate,
-        bodymark1,
-        bodymark2
+        cast,
+        bloodgroup,
+        hseschoolname,
+        hseboard,
+        hsemark,
+        passoutyear,
+        cert_10th,
+        cert_12th,
+        aadhar_file,
+        passport_photo,
+        createdat
         FROM tbl_applications
         WHERE appid=?";
 
@@ -52,69 +70,67 @@ if(isset($_REQUEST["id"])){
     $stmt->execute();
     $stmt->bind_result(
         $appid,
-        $admissionyear, 
-        $appno,
+        $admissionyear,
+        $regno,
         $name,
-        $regionallanguage, 
-        $sex,
-        $aadharno,
-        $bloodgroup,
-        $admissionstandard,	
         $contact,
-        $alternatecontact,
         $email,
-        $fathername,
-        $fatheroccupation,
+        $course,
+        $college,
+        $parentname,
+        $parentoccupation,
+        $parentcontact,
         $address,
-        $mothername,
-        $motheroccupation,
-        $guardianname,
-        $guardianrelation,
-        $guardianoccupation,
-        $guardianaddress,
-        $previousschool,
-        $yearstuded,
-        $standaredstuded,
-        $dateadmission,
-        $dateleaving,
-        $remarks,
         $dateofbirth,
-        $age,
-        $religion,
-        $caste,
-        $placebirth,
+        $aadhar,
         $nationality,
-        $state,
+        $religion,
         $community,
-        $mothertongue,
-        $tcno,
-        $vaccinationdate,
-        $bodymark1,
-        $bodymark2
+        $cast,
+        $bloodgroup,
+        $hseschoolname,
+        $hseboard,
+        $hsemark,
+        $passoutyear,
+        $cert_10th,
+        $cert_12th,
+        $aadhar_file,
+        $passport_photo,
+        $createdat
     );
     $stmt->store_result();
-    if($stmt->num_rows == 1)  //To check if the row exists
-    {
-            if($stmt->fetch()) //fetching the contents of the row
-            {
-                $stmt_read = $con->prepare("UPDATE tbl_applications SET
-                    isreaded=1
-                    WHERE appid=?");
-                    $stmt_read->bind_param("i",$id);
-                    if($stmt_read->execute()){
-                    }						
-                    $stmt_read->close();
-            }
+    if ($stmt->num_rows == 1) {
+        if ($stmt->fetch()) {
+            $stmt_read = $con->prepare("UPDATE tbl_applications SET isreaded=1 WHERE appid=?");
+            $stmt_read->bind_param("i", $id);
+            $stmt_read->execute();
+            $stmt_read->close();
+        }
     }
     $stmt->close();
 }
 
+function renderCertBadge($filepath, $label) {
+    if (!empty($filepath)) {
+        $url = "../" . ltrim($filepath, "/");
+        $ext = strtolower(pathinfo($filepath, PATHINFO_EXTENSION));
+        $is_img = in_array($ext, array('jpg', 'jpeg', 'png', 'gif', 'webp'));
+        $html = "<a href='" . htmlspecialchars($url) . "' target='_blank' class='btn btn-sm btn-info' style='margin-right:8px; color:#fff;'><i class='fa fa-eye'></i> View " . htmlspecialchars($label) . "</a>";
+        $html .= "<a href='" . htmlspecialchars($url) . "' download class='btn btn-sm btn-success' style='color:#fff;'><i class='fa fa-download'></i> Download</a>";
+        if ($is_img) {
+            $html .= "<div style='margin-top:8px;'><a href='" . htmlspecialchars($url) . "' target='_blank'><img src='" . htmlspecialchars($url) . "' alt='" . htmlspecialchars($label) . "' style='max-height:100px; border:1px solid #ddd; padding:3px; border-radius:4px; background:#fff;'/></a></div>";
+        }
+        return $html;
+    }
+    return "<span class='text-muted'>Not Uploaded</span>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <?php include("admin-header-links.php"); ?>
+    <title>GracePath - Application Details</title>
 </head>
 
 <body>
@@ -133,311 +149,211 @@ if(isset($_REQUEST["id"])){
                         </li>
                         <li class="active-bre"><a href="#"> Application Details</a>
                         </li>
-                        <li class="page-back"><a href="index.php"><i class="fa fa-backward" aria-hidden="true"></i> Back to Website</a>
+                        <li class="page-back"><a href="admin-application-list.php"><i class="fa fa-backward" aria-hidden="true"></i> Back to List</a>
                         </li>
                     </ul>
                 </div>
 
                 <!--== User Details ==-->
                 <div class="row">
-                    <div class="input-field col s12">                                                
+                    <div class="input-field col s12">
                         <input type="button" id="btnprinttop" name="btnprinttop" class="btn-primary" value="Print">
                     </div>
                 </div>
                 <div class="sb2-2-3">
                     <div class="row" id="print">
                         <div class="col-md-12">
-						<div class="box-inn-sp admin-form">
-                                <div class="inn-title">
-                                    <img src="images/log.png" col-lg-4 style="float:left; max-width:80px;"/><h3 style="text-align:center;color:white;">Vidyadhiraja Vidya Bhavan H S School (VVBHSS) <br> Aluva, Ernakulam-683101</h3>
-                                    
-                                    <!--<p>Here you can edit your website basic details URL, Phone, Email, Address, User and password and more</p>-->
-                                </div>                                
+                            <div class="box-inn-sp admin-form">
+                                <div class="inn-title" style="overflow:hidden;">
+                                    <img src="../img/logo.png" style="float:left; max-width:75px;" />
+                                    <h3 style="text-align:center;color:white;margin:5px 0;">GracePath Education<br><small style="color:#e0e0e0;font-size:15px;">Ponkunnam, Kottayam, Kerala | +91 8086859526</small></h3>
+                                </div>
                                 <div class="tab-inn">
-                                <h4 style="text-align:center;">Application Informations - <?php echo $appno; ?></h4>
+                                    <div class="row" style="margin-bottom:20px; align-items:center;">
+                                        <div class="col s8">
+                                            <h4>Registration Information - <?php echo htmlspecialchars($regno); ?></h4>
+                                            <?php if (!empty($createdat)) { ?>
+                                                <p class="text-muted">Submitted on: <?php echo htmlspecialchars($createdat); ?></p>
+                                            <?php } ?>
+                                        </div>
+                                        <div class="col s4" style="text-align:right;">
+                                            <?php if (!empty($passport_photo)) { ?>
+                                                <img src="../<?php echo htmlspecialchars($passport_photo); ?>" alt="Applicant Photo" style="max-height:120px; max-width:120px; border:2px solid #ccc; border-radius:6px; padding:3px;" />
+                                            <?php } ?>
+                                        </div>
+                                    </div>
                                     <form>
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <b style="display: inline-block; width: 40%;">Registration No</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($regno); ?>
+                                            </div>
+                                            <div class="input-field col s6">
                                                 <b style="display: inline-block; width: 40%;">Academic Year</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $admissionyear; ?>                                              
-                                            </div>                                           
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Full Name</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $name; ?>                                                
-                                            </div>
-                                            <!--<div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Regional Language</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                               <?php //echo $regionallanguage; ?>                                               
-                                            </div>-->
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Sex</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $sex; ?>
-                                                
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($admissionyear); ?>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            
                                             <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Aadhar No</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $aadharno; ?>
-                                                
+                                                <b style="display: inline-block; width: 40%;">Applicant Name</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($name); ?>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <b style="display: inline-block; width: 40%;">Contact Number</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($contact); ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <b style="display: inline-block; width: 40%;">Email</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($email); ?>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <b style="display: inline-block; width: 40%;">Course</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($course); ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <b style="display: inline-block; width: 40%;">College</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($college); ?>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <b style="display: inline-block; width: 40%;">Date of Birth</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($dateofbirth); ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <b style="display: inline-block; width: 40%;">Parent Name</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($parentname); ?>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <b style="display: inline-block; width: 40%;">Parent Occupation</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($parentoccupation); ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <b style="display: inline-block; width: 40%;">Parent Contact</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($parentcontact); ?>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <b style="display: inline-block; width: 40%;">Address</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo nl2br(htmlspecialchars($address)); ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <b style="display: inline-block; width: 40%;">Aadhar Number</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($aadhar); ?>
                                             </div>
                                             <div class="input-field col s6">
                                                 <b style="display: inline-block; width: 40%;">Blood Group</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $bloodgroup; ?>
-                                              
-                                            </div>
-                                        </div>
-                                        <div class="row">                                            
-                                            
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Admission Standard</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $admissionstandard; ?>
-                                                
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Email</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $email; ?>
-                                              
-                                            </div>
-                                        </div>
-                                        <div class="row">                                            
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Contact</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $contact; ?>                                               
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Alternate Contact</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $alternatecontact; ?>
-                                               
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="row">
-                                            
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Father Name</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $fathername; ?>
-                                               
-                                            </div>                                        
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Father Occupation</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $fatheroccupation; ?>
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="row">                                            
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Address</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $address; ?>
-                                               
-                                            </div>                                       
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Mother Name</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $mothername; ?>
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Mother Occupation</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $motheroccupation; ?>
-                                               
-                                            </div>                                        
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Guardian Name</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $guardianname; ?>
-                                               
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Guardian Relation</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $guardianrelation; ?>
-                                              
-                                            </div>                                        
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Guardian Occupation</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $guardianoccupation; ?>
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Guardian Address</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $guardianaddress; ?>
-                                                
-                                            </div>                                       
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Previous School</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $previousschool; ?>
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Year Studed</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $yearstuded; ?>
-                                                
-                                            </div>                                       
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Standared Studed</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $standaredstuded; ?>
-                                               
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Date Admission</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $dateadmission; ?>
-                                                
-                                            </div>                                       
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Date Leaving</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $dateleaving; ?>
-                                               
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Remarks</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $remarks; ?>
-                                                
-                                            </div>                                       
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Date of Birth</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $dateofbirth; ?>                                              
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Age</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $age; ?>
-                                                
-                                            </div>                                       
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Religion</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $religion; ?>
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Caste</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $caste; ?>
-                                               
-                                            </div>                                        
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Place of Birth</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $placebirth; ?>
-                                               
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($bloodgroup); ?>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
                                                 <b style="display: inline-block; width: 40%;">Nationality</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $nationality; ?>
-                                              
-                                            </div>                                        
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($nationality); ?>
+                                            </div>
                                             <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">State</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $state; ?>
-                                               
+                                                <b style="display: inline-block; width: 40%;">Religion</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($religion); ?>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
                                                 <b style="display: inline-block; width: 40%;">Community</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $community; ?>
-                                               
-                                            </div>                                        
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($community); ?>
+                                            </div>
                                             <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Mother Tongue</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $mothertongue; ?>
-                                                
+                                                <b style="display: inline-block; width: 40%;">Caste</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($cast); ?>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">TC No</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $tcno; ?>
-                                                
-                                            </div>                                        
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Vaccination Date</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $vaccinationdate; ?>
-                                                
+                                                <b style="display: inline-block; width: 40%;">HSE School Name</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($hseschoolname); ?>
                                             </div>
-                                        </div><div class="row">
                                             <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Body Mark 1</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $bodymark1; ?>
-                                              
-                                            </div>                                       
-                                            <div class="input-field col s6">
-                                                <b style="display: inline-block; width: 40%;">Body Mark 1</b>
-                                                <span style="display: inline-block; width: 15%;">:</span>
-                                                <?php echo $bodymark2; ?>
-                                               
+                                                <b style="display: inline-block; width: 40%;">HSE Board</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($hseboard); ?>
                                             </div>
                                         </div>
-                                        
-                                        <!--<div class="row">
-											<div class="file-field input-field col s12">
-												<div class="btn admin-upload-btn">
-													<span>File</span>
-													<input type="file">
-												</div>
-												<div class="file-path-wrapper">
-													<input class="file-path validate" type="text" placeholder="Profile image">
-												</div>
-											</div>
-                                        </div>-->                                 
                                         <div class="row">
+                                            <div class="input-field col s6">
+                                                <b style="display: inline-block; width: 40%;">HSE Mark</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($hsemark); ?>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <b style="display: inline-block; width: 40%;">Passout Year</b>
+                                                <span style="display: inline-block; width: 10%;">:</span>
+                                                <?php echo htmlspecialchars($passoutyear); ?>
+                                            </div>
+                                        </div>
+
+                                        <hr style="margin: 25px 0;" />
+                                        <h4 style="margin-bottom: 15px;">Uploaded Certificates &amp; Documents</h4>
+                                        <div class="row">
+                                            <div class="input-field col s6" style="margin-bottom: 15px;">
+                                                <b style="display: inline-block; width: 40%; vertical-align: top;">10th Certificate</b>
+                                                <span style="display: inline-block; width: 5%; vertical-align: top;">:</span>
+                                                <div style="display: inline-block; width: 50%;">
+                                                    <?php echo renderCertBadge($cert_10th, "10th Certificate"); ?>
+                                                </div>
+                                            </div>
+                                            <div class="input-field col s6" style="margin-bottom: 15px;">
+                                                <b style="display: inline-block; width: 40%; vertical-align: top;">12th Certificate</b>
+                                                <span style="display: inline-block; width: 5%; vertical-align: top;">:</span>
+                                                <div style="display: inline-block; width: 50%;">
+                                                    <?php echo renderCertBadge($cert_12th, "12th Certificate"); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6" style="margin-bottom: 15px;">
+                                                <b style="display: inline-block; width: 40%; vertical-align: top;">Aadhar Card</b>
+                                                <span style="display: inline-block; width: 5%; vertical-align: top;">:</span>
+                                                <div style="display: inline-block; width: 50%;">
+                                                    <?php echo renderCertBadge($aadhar_file, "Aadhar Card"); ?>
+                                                </div>
+                                            </div>
+                                            <div class="input-field col s6" style="margin-bottom: 15px;">
+                                                <b style="display: inline-block; width: 40%; vertical-align: top;">Passport Photo</b>
+                                                <span style="display: inline-block; width: 5%; vertical-align: top;">:</span>
+                                                <div style="display: inline-block; width: 50%;">
+                                                    <?php echo renderCertBadge($passport_photo, "Passport Photo"); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-top:20px;">
                                             <div class="input-field col s12">
-                                                <a href="admin-application-edit.php?id=<?php echo $appid; ?>&prv=1" class='ad-st-edit' style="padding:8px 12px;">edit</a>
-                                               <!-- <i class="waves-effect waves-light btn-large waves-input-wrapper" style=""><input type="submit" class="waves-button-input" value="Edit"></i>-->
+                                                <a href="admin-application-edit.php?id=<?php echo $appid; ?>&prv=1" class='ad-st-edit' style="padding:8px 16px;">Edit Application</a>
                                             </div>
                                         </div>
                                     </form>
@@ -446,58 +362,34 @@ if(isset($_REQUEST["id"])){
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12" style="text-align:center;">                                                
-                            <i class="waves-effect waves-light btn-large waves-input-wrapper" style=""><input type="button" id="btnprint" name="btnprint" class="waves-button-input" value="Print"></i>
+                        <div class="input-field col s12" style="text-align:center;">
+                            <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="button" id="btnprint" name="btnprint" class="waves-button-input" value="Print"></i>
                         </div>
                     </div>
                 </div>
-
-                
-
             </div>
-            
         </div>
     </div>
-    <?php
-     include("admin-fooder.php");
-     
-    ?>  
-    
-    <!--Import jQuery before materialize.js-->
-    <!--<script src="js/main.min.js"></script>-->
-    <!--<script src="js/bootstrap.min.js"></script>-->
-    <!--<script src="js/materialize.min.js"></script>-->
-    <!--<script src="js/custom.js"></script>-->
+    <?php include("admin-fooder.php"); ?>
 
     <script>
         $(document).ready(function() {
             function printDiv() {
-                //var divToPrint = document.getElementsByClassName('print')[0];
                 var divToPrint = document.getElementById('print');
-                var anotherWindow = window.open('VIDYADHIRAJA VIDYABHAVAN HIGHER SECONDARY SCHOOL', 'Print-Window');
+                var anotherWindow = window.open('GracePath Education', 'Print-Window');
                 anotherWindow.document.open();
-                anotherWindow.document.write('<html><style>.function-print{height: 99%;}.function-print body{height: 99%;} input[type="button"], input[type="submit"], input[type="reset"] {display: none;} a{display: none;} h3{color:black !important;}</style><body onload="window.print()">' + divToPrint.innerHTML + ' <br>I here by declare that the particulars entered in this form are true to the best of my knowledge and that I have read the rules of discipline of the school and that I undertake that my son/daughter will abide by them. I further declare that the date of birth of my daughter/son given above is correct and that I will not apply in future for correction of the date of birth<br><p style="col-6;float:left;">Date:</p><p style="col-6;" align="right">Signature of Applicant</p></body></html>');
+                anotherWindow.document.write('<html><style>.function-print{height: 99%;}.function-print body{height: 99%;} input[type="button"], input[type="submit"], input[type="reset"] {display: none;} a.ad-st-edit, a.btn {display: none;} h3{color:black !important;}</style><body onload="window.print()">' + divToPrint.innerHTML + '<br><p style="float:left;">Date:</p><p align="right">Signature of Applicant</p></body></html>');
                 anotherWindow.document.close();
                 setTimeout(function() {
                     anotherWindow.close();
                 }, 10);
             }
 
-            $('#btnprint').click(function() {                 
-                printDiv();
-            });
-            $('#btnprinttop').click(function() {                 
+            $('#btnprint, #btnprinttop').click(function() {
                 printDiv();
             });
         });
-
     </script>
 
 </body>
-
-
 </html>
-
-<?php
-//$con->close();
-?>

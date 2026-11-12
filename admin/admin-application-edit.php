@@ -1,54 +1,70 @@
 <?php 
-
 include_once("db_connection.php");
 include("adminsession.php");
-$prv=0;
+$prv = 0;
 
-if(isset($_REQUEST["prv"])){
-    $prv=$_REQUEST["prv"];
+if (isset($_REQUEST["prv"])) {
+    $prv = intval($_REQUEST["prv"]);
 }
-if(isset($_REQUEST["id"])){
-    $id=$_REQUEST["id"];    
-    $sql = "SELECT  appid,
-        admissionyear ,
-        appno,
+
+$appid = 0;
+$admissionyear = date("Y");
+$regno = "";
+$name = "";
+$contact = "";
+$email = "";
+$course = "";
+$college = "";
+$parentname = "";
+$parentoccupation = "";
+$parentcontact = "";
+$address = "";
+$dateofbirth = "";
+$aadhar = "";
+$nationality = "";
+$religion = "";
+$community = "";
+$cast = "";
+$bloodgroup = "";
+$hseschoolname = "";
+$hseboard = "";
+$hsemark = "";
+$passoutyear = "";
+$cert_10th = "";
+$cert_12th = "";
+$aadhar_file = "";
+$passport_photo = "";
+
+if (isset($_REQUEST["id"])) {
+    $id = intval($_REQUEST["id"]);
+    $sql = "SELECT
+        appid,
+        admissionyear,
+        regno,
         name,
-        regionallanguage, 
-        sex,
-        aadharno,
-        bloodgroup,
-        admissionstandard,	
         contact,
-        alternatecontact,
         email,
-        fathername,
-        fatheroccupation,
+        course,
+        college,
+        parentname,
+        parentoccupation,
+        parentcontact,
         address,
-        mothername,
-        motheroccupation,
-        guardianname,
-        guardianrelation,
-        guardianoccupation,
-        guardianaddress,
-        previousschool,
-        yearstuded,
-        standaredstuded,
-        dateadmission,
-        dateleaving,
-        remarks,
         dateofbirth,
-        age,
-        religion,
-        caste,
-        placebirth,
+        aadhar,
         nationality,
-        state,
+        religion,
         community,
-        mothertongue,
-        tcno,
-        vaccinationdate,
-        bodymark1,
-        bodymark2
+        cast,
+        bloodgroup,
+        hseschoolname,
+        hseboard,
+        hsemark,
+        passoutyear,
+        cert_10th,
+        cert_12th,
+        aadhar_file,
+        passport_photo
         FROM tbl_applications
         WHERE appid=?";
 
@@ -56,70 +72,52 @@ if(isset($_REQUEST["id"])){
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $stmt->bind_result(
-        $appid, 
+        $appid,
         $admissionyear,
-        $appno,
+        $regno,
         $name,
-        $regionallanguage, 
-        $sex,
-        $aadharno,
-        $bloodgroup,
-        $admissionstandard,	
         $contact,
-        $alternatecontact,
         $email,
-        $fathername,
-        $fatheroccupation,
+        $course,
+        $college,
+        $parentname,
+        $parentoccupation,
+        $parentcontact,
         $address,
-        $mothername,
-        $motheroccupation,
-        $guardianname,
-        $guardianrelation,
-        $guardianoccupation,
-        $guardianaddress,
-        $previousschool,
-        $yearstuded,
-        $standaredstuded,
-        $dateadmission,
-        $dateleaving,
-        $remarks,
         $dateofbirth,
-        $age,
-        $religion,
-        $caste,
-        $placebirth,
+        $aadhar,
         $nationality,
-        $state,
+        $religion,
         $community,
-        $mothertongue,
-        $tcno,
-        $vaccinationdate,
-        $bodymark1,
-        $bodymark2
+        $cast,
+        $bloodgroup,
+        $hseschoolname,
+        $hseboard,
+        $hsemark,
+        $passoutyear,
+        $cert_10th,
+        $cert_12th,
+        $aadhar_file,
+        $passport_photo
     );
     $stmt->store_result();
-    if($stmt->num_rows == 1)  //To check if the row exists
-    {
-            if($stmt->fetch()) //fetching the contents of the row
-            {
-                $stmt_read = $con->prepare("UPDATE tbl_applications SET
-                    isreaded=1
-                    WHERE appid=?");
-                    $stmt_read->bind_param("i",$id);
-                    if($stmt_read->execute()){
-                    }						
-                    $stmt_read->close();
-            }
+    if ($stmt->num_rows == 1) {
+        if ($stmt->fetch()) {
+            $stmt_read = $con->prepare("UPDATE tbl_applications SET isreaded=1 WHERE appid=?");
+            $stmt_read->bind_param("i", $id);
+            $stmt_read->execute();
+            $stmt_read->close();
+        }
     }
     $stmt->close();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <?php include("admin-header-links.php"); ?>
+    <title>GracePath - Edit Application</title>
 </head>
 
 <body>
@@ -137,20 +135,16 @@ if(isset($_REQUEST["id"])){
                         <li>
                             <a href="admin-application-list.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <?php
-                        if($prv!=0){
-                        ?>
+                        <?php if ($prv != 0) { ?>
                             <li class="active-bre">
                                 <a href="admin-application-details.php?id=<?php echo $appid; ?>">Application Details</a>
                             </li>
-                        <?php
-                        }
-                        ?>
+                        <?php } ?>
                         <li class="active-bre">
                             <a href="#"> Application Edit</a>
                         </li>
                         <li class="page-back">
-                            <a href="index.php"><i class="fa fa-backward" aria-hidden="true"></i> Back to Website</a>
+                            <a href="admin-application-list.php"><i class="fa fa-backward" aria-hidden="true"></i> Back to List</a>
                         </li>
                     </ul>
                 </div>
@@ -159,296 +153,170 @@ if(isset($_REQUEST["id"])){
                 <div class="sb2-2-3">
                     <div class="row">
                         <div class="col-md-12">
-						<div class="box-inn-sp admin-form">
+                            <div class="box-inn-sp admin-form">
                                 <div class="inn-title">
-                                    <h4>Edit Application - <?php echo $appno; ?></h4>
-                                    <!--<p>Here you can edit your website basic details URL, Phone, Email, Address, User and password and more</p>-->
+                                    <h4>Edit Application - <?php echo htmlspecialchars($regno); ?></h4>
                                 </div>
                                 <div class="tab-inn">
-                                    <p>
-                                        <div class="alert alert-dismissible" role="alert" style="display:none;">
-                                            <strong>Warning!</strong>
-                                            <p></p>
-                                        </div>
-                                    </p>
-                                    <form  name="form_save" id="form_save" method="post" action="adminssion_save">
+                                    <div class="alert alert-dismissible" role="alert" style="display:none;">
+                                        <strong></strong>
+                                        <p></p>
+                                    </div>
+                                    <form name="form_save" id="form_save" method="post" action="../adminssion_save.php" enctype="multipart/form-data">
                                         <input type="hidden" name="hdid" id="hdid" value="<?php echo $appid; ?>">
                                         <div class="row">
-                                            <div class="input-field col s6"></label>
-                                                <b>Academic Year*:</b>
-                                                <select name="admissionyear" id="admissionyear" class="form-control" required>
-                                                    <option value="">-- Select Academic Year --</option>
-                                                    <option value="2025" <?php if($admissionyear==2025){ echo "selected"; }?> >2025-26</option>                                        
-                                                </select>
-                                                <!--<span id="sexvalidate" class="error customvalidation" style="display:block;width:fit-content;">This field is required.</span>-->                                         
-                                            </div>
-                                        </div>  
-                                        <div class="row">
                                             <div class="input-field col s6">
-                                                <b>Full Name:</b>
-                                                <input type="text" id="name" name="name" value="<?php echo $name; ?>" class="validate" required>                                                  
+                                                <b>Academic Year:</b>
+                                                <input type="number" id="admissionyear" name="admissionyear" value="<?php echo htmlspecialchars($admissionyear ? $admissionyear : date('Y')); ?>" class="validate">
                                             </div>
                                             <div class="input-field col s6">
-                                                <b>Regional Language:</b>
-                                                <input type="text" id="regionallanguage" name="regionallanguage" value="<?php echo $regionallanguage; ?>" class="validate" >
-                                               
+                                                <b>Registration No:</b>
+                                                <input type="text" value="<?php echo htmlspecialchars($regno); ?>" disabled>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <b>Sex:</b>                                               
-                                                <select name="sex" id="sex" class="form-control" aria-label="Default select example">
-                                                    <option class="form-control" value="">-- Select Sex --</option>
-                                                    <option class="form-control" value="male" <?php if(strtolower(trim($sex))=="male"){ echo 'selected';} ?>>Male</option>
-                                                    <option class="form-control" value="female" <?php if($sex=="female"){ echo 'selected';} ?>>Female</option>
-                                                </select>
+                                                <b>Applicant Name *:</b>
+                                                <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($name); ?>" class="validate" required>
                                             </div>
                                             <div class="input-field col s6">
-                                                <b>Aadhar No:</b>
-                                                <input type="text" id="aadharno" name="aadharno" value="<?php echo $aadharno; ?>" class="validate"  >                                                
-                                            </div>
-                                        </div>
-                                        <div class="row">                                            
-                                            <div class="input-field col s6">
-                                                <b>Blood Group:</b>
-                                                <input type="text" id="bloodgroup" name="bloodgroup" value="<?php echo $bloodgroup; ?>" class="validate">
-                                              
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <b>Admission Standard:</b>                                                
-                                                <select name="admissionstandard" id="admissionstandard" class="form-control required">
-                                                    <option value="">-- select standard  --</option>
-                                                    <option value="LKG" <?php if(strtoupper(trim($admissionstandard))=="LKG"){ echo 'selected';} ?>>LKG</option>
-                                                    <option value="UKG" <?php if(strtoupper(trim($admissionstandard))=="UKG"){ echo 'selected';} ?>>UKG</option>							
-                                                    <option value="I" <?php if(strtoupper(trim($admissionstandard))=="I"){ echo 'selected';} ?>>I</option>
-                                                    <option value="II" <?php if(strtoupper(trim($admissionstandard))=="II"){ echo 'selected';} ?>>II</option>
-                                                    <option value="III" <?php if(strtoupper(trim($admissionstandard))=="III"){ echo 'selected';} ?>>III</option>
-                                                    <option value="IV" <?php if(strtoupper(trim($admissionstandard))=="IV"){ echo 'selected';} ?>>IV</option>
-                                                    <option value="V" <?php if(strtoupper(trim($admissionstandard))=="V"){ echo 'selected';} ?>>V</option>
-                                                    <option value="VI" <?php if(strtoupper(trim($admissionstandard))=="VI"){ echo 'selected';} ?>>VI</option>
-                                                    <option value="VII" <?php if(strtoupper(trim($admissionstandard))=="VII"){ echo 'selected';} ?>>VII</option>
-                                                    <option value="VIII" <?php if(strtoupper(trim($admissionstandard))=="VIII"){ echo 'selected';} ?>>VIII</option>
-                                                    <option value="IX" <?php if(strtoupper(trim($admissionstandard))=="IX"){ echo 'selected';} ?>>IX</option>
-                                                    <!--<option value="X" <?php if(strtoupper(trim($admissionstandard))=="X"){ echo 'selected';} ?>>X</option>-->
-                                                    <option value="Plus One" <?php if(strtolower(trim($admissionstandard))=="plus one"){ echo 'selected';} ?>>Plus One</option>
-                                                    <!--<option value="Plus Two" <?php if(strtolower(trim($admissionstandard))=="plus two"){ echo 'selected';} ?>>Plus Two</option>-->
-                                                </select>
-                                                <!--<span id="stdvalidate" class="error customvalidation" style="display:block;width:fit-content;">This field is required.</span>-->
+                                                <b>Contact Number *:</b>
+                                                <input type="text" id="contact" name="contact" value="<?php echo htmlspecialchars($contact); ?>" class="validate" required>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            
-                                            <div class="input-field col s3">
-                                                <b>Contact:</b>
-                                                <input type="text" id="contact" name="contact" value="<?php echo $contact; ?>" class="validate">
-                                               
-                                            </div>
-                                            <div class="input-field col s3">
-                                                <b>Alternate Contact:</b>
-                                                <input type="text" id="alternatecontact" name="alternatecontact" value="<?php echo $alternatecontact; ?>" class="validate">
-                                               
+                                            <div class="input-field col s6">
+                                                <b>Applicant Email:</b>
+                                                <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" class="validate">
                                             </div>
                                             <div class="input-field col s6">
-                                                <b>Email:</b>
-                                                <input type="text" id="email" name="email" value="<?php echo $email; ?>" class="validate">
-                                              
+                                                <b>Course *:</b>
+                                                <input type="text" id="course" name="course" value="<?php echo htmlspecialchars($course); ?>" class="validate" required>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            
+                                            <div class="input-field col s6">
+                                                <b>College:</b>
+                                                <input type="text" id="college" name="college" value="<?php echo htmlspecialchars($college); ?>" class="validate">
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <b>Date of Birth *:</b>
+                                                <input type="date" id="dateofbirth" name="dateofbirth" value="<?php echo htmlspecialchars($dateofbirth); ?>" class="validate" required>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <b>Father Name:</b>
-                                                <input type="text" id="fathername" name="fathername" value="<?php echo $fathername; ?>" class="validate">
-                                               
-                                            </div>                                        
+                                                <b>Parent Name *:</b>
+                                                <input type="text" id="parentname" name="parentname" value="<?php echo htmlspecialchars($parentname); ?>" class="validate" required>
+                                            </div>
                                             <div class="input-field col s6">
-                                                <b>Father Occupation:</b>
-                                                <input type="text" id="fatheroccupation" name="fatheroccupation" value="<?php echo $fatheroccupation; ?>" class="validate">
-                                                
+                                                <b>Parent Occupation:</b>
+                                                <input type="text" id="parentoccupation" name="parentoccupation" value="<?php echo htmlspecialchars($parentoccupation); ?>" class="validate">
                                             </div>
                                         </div>
-                                        <div class="row">                                            
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <b>Parent Contact Number:</b>
+                                                <input type="text" id="parentcontact" name="parentcontact" value="<?php echo htmlspecialchars($parentcontact); ?>" class="validate">
+                                            </div>
                                             <div class="input-field col s6">
                                                 <b>Address:</b>
-                                                <textarea rows="3" id="address" name="address"><?php echo $address; ?> </textarea>
-                                               
-                                            </div>                                       
-                                            <div class="input-field col s6">
-                                                <b>Mother Name:</b>
-                                                <input type="text" id="mothername" name="mothername" value="<?php echo $mothername; ?>" class="validate">
-                                                
+                                                <textarea rows="3" id="address" name="address"><?php echo htmlspecialchars($address); ?></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <b>Mother Occupation:</b>
-                                                <input type="text" id="motheroccupation" name="motheroccupation" value="<?php echo $motheroccupation; ?>" class="validate">
-                                               
-                                            </div>                                        
-                                            <div class="input-field col s6">
-                                                <b>Guardian Name:</b>
-                                                <input type="text" id="guardianname" name="guardianname" value="<?php echo $guardianname; ?>" class="validate">
-                                               
+                                                <b>Aadhar Number:</b>
+                                                <input type="text" id="aadhar" name="aadhar" value="<?php echo htmlspecialchars($aadhar); ?>" class="validate">
                                             </div>
-                                        </div>
-                                        <div class="row">
                                             <div class="input-field col s6">
-                                                <b>Guardian Relation:</b>
-                                                <input type="text" id="guardianrelation" name="guardianrelation" value="<?php echo $guardianrelation; ?>" class="validate">
-                                              
-                                            </div>                                        
-                                            <div class="input-field col s6">
-                                                <b>Guardian Occupation:</b>
-                                                <input type="text" id="guardianoccupation" name="guardianoccupation" value="<?php echo $guardianoccupation; ?>" class="validate">
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b>Guardian Address:</b>
-                                                <textarea rows="3" id="guardianaddress" name="guardianaddress" class="validate"><?php echo $guardianaddress; ?></textarea> 
-                                                
-                                            </div>                                       
-                                            <div class="input-field col s6">
-                                                <b>Previous School:</b>
-                                                <input type="text" id="previousschool" name="previousschool" value="<?php echo $previousschool; ?>" class="validate">
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b>Year Studed:</b>
-                                                <input type="text" id="yearstuded" name="yearstuded" value="<?php echo $yearstuded; ?>" class="validate">
-                                                
-                                            </div>                                       
-                                            <div class="input-field col s6">
-                                                <b>Standared Studed:</b>
-                                                <input type="text" id="standaredstuded" name="standaredstuded" value="<?php echo $standaredstuded; ?>" class="validate">
-                                               
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b>Date Admission:</b>
-                                                <input type="text" id="dateadmission" name="dateadmission" value="<?php echo $dateadmission; ?>" class="validate">
-                                                
-                                            </div>                                       
-                                            <div class="input-field col s6">
-                                                <b>Date Leaving:</b>
-                                                <input type="text" id="dateleaving" name="dateleaving" value="<?php echo $dateleaving; ?>" class="validate">
-                                               
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b>Remarks:</b>
-                                                <textarea rows="3" id="remarks" name="remarks"><?php echo $remarks; ?></textarea>
-                                                
-                                            </div>                                       
-                                            <div class="input-field col s6">
-                                                <b>Date of Birth:</b>
-                                                <input type="text" id="dateofbirth" name="dateofbirth" value="<?php echo $dateofbirth; ?>" class="validate">                                                
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b>Age:</b>
-                                                <input type="text" id="age" name="age" value="<?php echo $age; ?>" class="validate">
-                                                
-                                            </div>                                       
-                                            <div class="input-field col s6">
-                                                <b>Religion:</b>
-                                                <input type="text" id="religion" name="religion" value="<?php echo $religion; ?>" class="validate">
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <b>Caste:</b>
-                                                <input type="text" id="caste" name="caste" value="<?php echo $caste; ?>" class="validate">
-                                               
-                                            </div>                                        
-                                            <div class="input-field col s6">
-                                                <b>Place of Birth:</b>
-                                                <input type="text" id="placebirth" name="placebirth" value="<?php echo $placebirth; ?>" class="validate">
-                                               
+                                                <b>Blood Group:</b>
+                                                <input type="text" id="bloodgroup" name="bloodgroup" value="<?php echo htmlspecialchars($bloodgroup); ?>" class="validate">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
                                                 <b>Nationality:</b>
-                                                <input type="text" id="nationality" name="nationality" value="<?php echo $nationality; ?>" class="validate">
-                                              
-                                            </div>                                        
+                                                <input type="text" id="nationality" name="nationality" value="<?php echo htmlspecialchars($nationality); ?>" class="validate">
+                                            </div>
                                             <div class="input-field col s6">
-                                                <b>State:</b>
-                                                <input type="text" id="state" name="state" value="<?php echo $state; ?>" class="validate">
-                                               
+                                                <b>Religion:</b>
+                                                <input type="text" id="religion" name="religion" value="<?php echo htmlspecialchars($religion); ?>" class="validate">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
                                                 <b>Community:</b>
-                                                <input type="text" id="community" name="community" value="<?php echo $community; ?>" class="validate">
-                                               
-                                            </div>                                        
+                                                <input type="text" id="community" name="community" value="<?php echo htmlspecialchars($community); ?>" class="validate">
+                                            </div>
                                             <div class="input-field col s6">
-                                                <b>Mother Tongue:</b>
-                                                <input type="text" id="mothertongue" name="mothertongue" value="<?php echo $mothertongue; ?>" class="validate">
-                                                
+                                                <b>Caste:</b>
+                                                <input type="text" id="cast" name="cast" value="<?php echo htmlspecialchars($cast); ?>" class="validate">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <b>TC No:</b>
-                                                <input type="text" id="tcno" name="tcno" value="<?php echo $tcno; ?>" class="validate">
-                                                
-                                            </div>                                        
-                                            <div class="input-field col s6">
-                                                <b>Vaccination Date:</b>
-                                                <input type="text" id="vaccinationdate" name="vaccinationdate" value="<?php echo $vaccinationdate; ?>" class="validate">                                                
+                                                <b>HSE School Name:</b>
+                                                <input type="text" id="hseschoolname" name="hseschoolname" value="<?php echo htmlspecialchars($hseschoolname); ?>" class="validate">
                                             </div>
-                                        </div><div class="row">
                                             <div class="input-field col s6">
-                                                <b>Body Mark 1:</b>
-                                                <textarea id="bodymark1" name="bodymark1" rows="4"><?php echo $bodymark1; ?></textarea>
-                                              
-                                            </div>                                       
-                                            <div class="input-field col s6">
-                                                <b>Body Mark 1:</b>
-                                                <textarea id="bodymark2" name="bodymark2" rows="4"><?php echo $bodymark2; ?></textarea>
-                                               
+                                                <b>HSE Board:</b>
+                                                <input type="text" id="hseboard" name="hseboard" value="<?php echo htmlspecialchars($hseboard); ?>" class="validate">
                                             </div>
                                         </div>
-                                        
-                                        <!--<div class="row">
-											<div class="file-field input-field col s12">
-												<div class="btn admin-upload-btn">
-													<span>File</span>
-													<input type="file">
-												</div>
-												<div class="file-path-wrapper">
-													<input class="file-path validate" type="text" placeholder="Profile image">
-												</div>
-											</div>
-                                        </div>-->                                 
                                         <div class="row">
+                                            <div class="input-field col s6">
+                                                <b>HSE Mark:</b>
+                                                <input type="text" id="hsemark" name="hsemark" value="<?php echo htmlspecialchars($hsemark); ?>" class="validate">
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <b>Passout Year:</b>
+                                                <input type="text" id="passoutyear" name="passoutyear" value="<?php echo htmlspecialchars($passoutyear); ?>" class="validate">
+                                            </div>
+                                        </div>
+
+                                        <hr style="margin: 25px 0;" />
+                                        <h4>Certificates &amp; Documents (Upload to replace existing)</h4>
+                                        <div class="row" style="margin-top: 15px;">
+                                            <div class="input-field col s6">
+                                                <b>10th Certificate:</b>
+                                                <?php if (!empty($cert_10th)) { ?>
+                                                    <a href="../<?php echo htmlspecialchars($cert_10th); ?>" target="_blank" class="label label-info" style="margin-left:10px;">View Current</a>
+                                                <?php } ?>
+                                                <input type="file" name="cert_10th" id="cert_10th" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" style="margin-top:8px;">
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <b>12th Certificate:</b>
+                                                <?php if (!empty($cert_12th)) { ?>
+                                                    <a href="../<?php echo htmlspecialchars($cert_12th); ?>" target="_blank" class="label label-info" style="margin-left:10px;">View Current</a>
+                                                <?php } ?>
+                                                <input type="file" name="cert_12th" id="cert_12th" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" style="margin-top:8px;">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 15px;">
+                                            <div class="input-field col s6">
+                                                <b>Aadhar Card:</b>
+                                                <?php if (!empty($aadhar_file)) { ?>
+                                                    <a href="../<?php echo htmlspecialchars($aadhar_file); ?>" target="_blank" class="label label-primary" style="margin-left:10px;">View Current</a>
+                                                <?php } ?>
+                                                <input type="file" name="aadhar_file" id="aadhar_file" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" style="margin-top:8px;">
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <b>Passport Size Photo:</b>
+                                                <?php if (!empty($passport_photo)) { ?>
+                                                    <a href="../<?php echo htmlspecialchars($passport_photo); ?>" target="_blank" class="label label-success" style="margin-left:10px;">View Current</a>
+                                                <?php } ?>
+                                                <input type="file" name="passport_photo" id="passport_photo" class="form-control" accept=".jpg,.jpeg,.png,.gif,.webp" style="margin-top:8px;">
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-top: 25px;">
                                             <div class="input-field col s12">
-                                                <!--<a href='#' class='ad-st-edit' style="padding:8px 12px;">edit</a>-->
-                                                <i class="waves-effect waves-light btn-large waves-input-wrapper" style="">
-                                                    <input type="button" id="btnapplynow" name="btnapplynow"  class="waves-button-input" style="font-size: medium;" value="Update Now">
+                                                <i class="waves-effect waves-light btn-large waves-input-wrapper">
+                                                    <input type="button" id="btnapplynow" name="btnapplynow" class="waves-button-input" style="font-size: medium;" value="Update Now">
                                                 </i>
                                             </div>
-                                            
                                         </div>
-                                        <p>
-                                            <div class="alert alert-dismissible" role="alert" style="display:none;">
-                                                <strong>Warning!</strong>
-                                                <p></p>
-                                            </div>
-                                        </p>
                                     </form>
                                 </div>
                             </div>
@@ -457,201 +325,131 @@ if(isset($_REQUEST["id"])){
                 </div>
             </div>
 
-     <?php
-     include("admin-fooder.php");
-     ?>  
-       
+    <?php include("admin-fooder.php"); ?>
+
     <script>
     $(document).ready(function() {
-        jQuery.validator.addMethod("validdate", function(value, element) {
-            return this.optional(element) ||  /^\d{1,2}\-\d{1,2}\-\d{4}$/.test(value);
-        }, "Please enter valid date.");
         $("#form_save").validate({
             rules: {
                 name: {
-                    required: true,                    
-                },
-                sex: {
-                    required: true,                           
-                },	
-                admissionstandard: {							
-                    required:true,
-                },
-                aadharno:{
-                    //required:true,
-                    number:true,
-                    minlength:12,
-                    maxlength: 12,
+                    required: true
                 },
                 contact: {
                     required: true,
-                    number:true,
-                    minlength:10,
-                    maxlength: 12,
-                }, 
-                alternatecontact: {                    
-                    number:true,
-                    minlength:10,
-                    maxlength: 12,
-                },            
-                email: {	                  				
-                    email:true,
-                },              
-                dateadmission:{
-                    validdate:true,
+                    number: true,
+                    minlength: 10,
+                    maxlength: 12
                 },
-                dateleaving:{
-                    validdate:true,
+                email: {
+                    email: true
                 },
-                dateofbirth:{
-                    required: true,
-                    validdate:true,
+                course: {
+                    required: true
                 },
-                vaccinationdate:{
-                    validdate:true,
+                parentname: {
+                    required: true
                 },
-               		
+                parentcontact: {
+                    number: true,
+                    minlength: 10,
+                    maxlength: 12
+                },
+                dateofbirth: {
+                    required: true
+                },
+                aadhar: {
+                    number: true,
+                    minlength: 12,
+                    maxlength: 12
+                }
             },
             messages: {
                 name: {
-                    required: "enter your full name",                    
-                },
-                sex: {
-                    required: "select your sex",                                                    
-                },	
-                admissionstandard: {
-                    required: "select the standared",
-                },
-                aadharno: {
-                    //required: "fill your aadhar number",
-                    number: "number only",
-                    minlength:"aadhar number must 12 digit",
-                    maxlength: "aadhar number must 12 digit",
+                    required: "Enter applicant full name"
                 },
                 contact: {
-                    required: "fill your mobile number",
-                    number: "number only",
-                    minlength:"phone number must 10 digit indian mobile number",
-                    maxlength: "phone number maximum 12 digit indian mobile number",
+                    required: "Enter contact mobile number",
+                    number: "Numbers only",
+                    minlength: "Phone number must be at least 10 digits",
+                    maxlength: "Phone number maximum 12 digits"
                 },
-                alternatecontact: {                    
-                    number: "number only",
-                    minlength:"phone number must 10 digit indian mobile number",
-                    maxlength: "phone number maximum 12 digit indian mobile number",
+                email: {
+                    email: "Please enter a valid email address"
                 },
-                email: {	                    			
-                    email:"please enter a valid email address",
-                },               
+                course: {
+                    required: "Enter course"
+                },
+                parentname: {
+                    required: "Enter parent name"
+                },
+                aadhar: {
+                    number: "Numbers only",
+                    minlength: "Aadhar number must be 12 digits",
+                    maxlength: "Aadhar number must be 12 digits"
+                }
             },
             errorPlacement: function(error, element) {
                 error.insertAfter(element);
             }
         });
-        $('#btnapplynow').click(function() { 
-            let valid=true;           
-            if($("#admissionstandard").val()==""){
-                $("#stdvalidate").css("display", "block");    
-                valid=false;                          
-            }else{
-                $("#stdvalidate").css("display", "none");  
-                    
-            }            
-            if($("#sex").val()==""){
-                $("#sexvalidate").css("display", "block");  
-                valid=false;       
-            }else{
-                $("#sexvalidate").css("display", "none");  
-                  
-            }               
-            if ($("#form_save").valid() && valid==true) { // test for validity                
-                    var $this = $("#btnapplynow"); //submit button selector using ID
-                    var $caption = $this.val(); // We store the html content of the submit button
-                    var form = "#form_save"; //defined the #form ID
-                    var formData = $(form).serializeArray(); //serialize the form into array
-                    var route = $(form).attr('action'); //get the route using attribute action
 
-                    $("#btnapplynow").prop('disabled', true).val("Processing...");
+        $('#btnapplynow').click(function() {
+            if ($("#form_save").valid()) {
+                var $this = $("#btnapplynow");
+                var $caption = $this.val();
+                var form = $("#form_save")[0];
+                var route = $("#form_save").attr('action');
+                var formData = new FormData(form);
 
-                    // Ajax config
-                    var data = new FormData();
+                $this.prop('disabled', true).val("Processing...");
 
-                    //Form data						
-                    $.each(formData, function(key, input) {
-                        data.append(input.name, input.value);                              
-                    });
-
-                    //File data
-                    //var file_data = $('input[name="imagefile"]')[0].files;
-                    //data.append("imagefile", file_data[0]); 
-
-                    //multifile upload
-                    /*for (var i = 0; i < file_data.length; i++) {
-                        data.append("imagefile[]", file_data[i]);
-                    }*/
-                    formData = data;
-                    // Ajax config
-
-                    $.ajax({
-                        type: "POST", //we are using POST method to submit the data to the server side
-                        url: route, // get the route value
-                        data: formData, // our serialized array data for server side
-                        timeout: 100,
-                        async: false,
-                        processData: false,
-                        contentType: false,
-
-                        beforeSend: function() { //We add this before send to disable the button once we submit it so that we prevent the multiple click
-                            $("#btnapplynow").prop('disabled', true).val("Processing...");
-                            //$this.attr('disabled', true).val("Processing...");
-                            $(".se-pre-con").fadeIn("slow");
-                        },
-                        success: function(response) { //once the request successfully process to the server side it will return result here
-                            $("#btnapplynow").attr('disabled', false).val($caption);                            	                                
-                            try {
-                                //var json = $.parseJSON(response);
-                                var json = JSON.parse(response);
-                                if (json["status"] == "success") {
-                                    //alert(json["status"]);
-                                    //resetForm();
-                                    //all();                                
-                                    ShowAlert("", "application successfully updated.!", "success");
-                                }else if(json["status"] == "filetype_error") {
-                                    ShowAlert("", "Not saved! invalid file type", "danger");
-                                }else if(json["status"] == "filesize_error") {
-                                    ShowAlert("", "Not saved! file size exceed", "danger");
-                                }
-                                else {
-                                    ShowAlert("", "Not saved! please enter correct data", "danger");
-                                }
-                            } catch (e) {                                    
-                                ShowAlert("", "Not saved! please enter correct data", "danger");
+                $.ajax({
+                    type: "POST",
+                    url: route,
+                    data: formData,
+                    timeout: 60000,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        $this.prop('disabled', true).val("Processing...");
+                        $(".se-pre-con").fadeIn("slow");
+                    },
+                    success: function(response) {
+                        $this.prop('disabled', false).val($caption);
+                        try {
+                            var json = JSON.parse(response);
+                            if (json["status"] == "success") {
+                                ShowAlert("", "Application successfully updated!", "success");
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 1200);
+                            } else if (json["status"] == "filetype_error") {
+                                ShowAlert("", "Not saved! Invalid file type.", "danger");
+                            } else if (json["status"] == "filesize_error") {
+                                ShowAlert("", "Not saved! File size exceeds 5MB limit.", "danger");
+                            } else {
+                                ShowAlert("", "Not saved! Please enter correct data.", "danger");
                             }
-
-                            // Reset form
-
-                        },
-                        complete: function(data) {
-                            // Hide image container
-                            $("#btnapplynow").prop('disabled', false).val($caption);
-                            $(".se-pre-con").fadeOut("slow");
-                        },
-                        error: function(XMLHttpRequest, textStatus, errorThrown) {
-                            $("#btnapplynow").prop('disabled', false).val($caption);
-                            ShowAlert(textStatus, errorThrown, "danger");
-                            $(".se-pre-con").fadeOut("slow");
+                        } catch (e) {
+                            ShowAlert("", "Not saved! Please enter correct data.", "danger");
                         }
-                    });                
+                    },
+                    complete: function(data) {
+                        $this.prop('disabled', false).val($caption);
+                        $(".se-pre-con").fadeOut("slow");
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        $this.prop('disabled', false).val($caption);
+                        ShowAlert(textStatus, errorThrown, "danger");
+                        $(".se-pre-con").fadeOut("slow");
+                    }
+                });
             } else {
-                ShowAlert("", "please enter valid data for all required field", "danger");
+                ShowAlert("", "Please enter valid data for all required fields.", "danger");
             }
         });
-       
-
     });
     </script>
-    
-   
 
 </body>
-
 </html>
