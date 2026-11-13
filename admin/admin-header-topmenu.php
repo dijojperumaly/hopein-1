@@ -50,7 +50,7 @@ $stmt_read_status->close();
 
                 <!-- Dropdown Structure -->
                 <ul id='top-menu' class='dropdown-content top-menu-sty'>
-                    <li><a href="#" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>Admin Setting</a>
+                    <li><a href="admin-change-password.php" class="waves-effect"><i class="fa fa-key" aria-hidden="true"></i>Change Password</a>
                     </li>
                     <li class="divider"></li>
                     <li><a href="admin-logout.php" class="ho-dr-con-last waves-effect"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>

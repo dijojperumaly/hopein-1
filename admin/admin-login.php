@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
         {
             if($stmt->fetch()) //fetching the contents of the row
             {
-                if($password!=$txtpassword){
+                if(!password_verify($txtpassword, $password) && $password !== $txtpassword){
                     $err_message= "Incorrect Password.";  
                 }
                 else if ($status != 'Active') {
