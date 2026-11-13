@@ -6,16 +6,21 @@ header('Content-Type: application/json');
 include_once("admin/db_connection.php");
 ob_clean();
 
+function normalize_page_slug($page) {
+    $p = strtolower(trim((string)$page));
+    $p = basename(parse_url($p, PHP_URL_PATH) ?: $p);
+    $p = preg_replace('/\.php$/i', '', $p);
+    if ($p === '' || $p === '/' || $p === 'index' || $p === 'home') {
+        return 'home';
+    }
+    return $p;
+}
+
 $today = date('Y-m-d');
 
-// Determine requested page slug
+// Determine requested page slug (works with or without .php extension)
 $rawPage = isset($_GET['page']) ? trim($_GET['page']) : 'index.php';
-$basename = basename(parse_url($rawPage, PHP_URL_PATH));
-if ($basename === '' || $basename === 'index.php' || $basename === 'home') {
-    $currentSlug = 'home';
-} else {
-    $currentSlug = strtolower(pathinfo($basename, PATHINFO_FILENAME));
-}
+$currentSlug = normalize_page_slug($rawPage);
 
 $sql = "SELECT popup_id, title, content, image, link_url, link_text, 
                IFNULL(display_pages, 'home') AS display_pages,
@@ -45,9 +50,9 @@ while ($row = $result->fetch_assoc()) {
         break;
     }
 
-    // 2. Comma-separated or specific page option
-    $allowedPages = array_map('trim', explode(',', $pagesConfig));
-    if (in_array($currentSlug, $allowedPages, true) || in_array($basename, $allowedPages, true)) {
+    // 2. Comma-separated or specific page option (normalized with/without .php)
+    $allowedPages = array_map('normalize_page_slug', explode(',', $pagesConfig));
+    if (in_array($currentSlug, $allowedPages, true)) {
         $matchedRow = $row;
         break;
     }

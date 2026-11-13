@@ -197,6 +197,32 @@ include("adminsession.php");
             margin-top:6px;display:none;
         }
         .change-img-btn { font-size:11px;margin-top:4px; }
+
+        /* Override Materialize CSS hiding checkboxes inside #customPagesWrap */
+        #customPagesWrap input[type="checkbox"].chk-page {
+            position: static !important;
+            left: auto !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+            display: inline-block !important;
+            width: 15px !important;
+            height: 15px !important;
+            margin: 0 7px 0 0 !important;
+            vertical-align: middle !important;
+            cursor: pointer !important;
+            accent-color: #1a237e;
+        }
+        #customPagesWrap .page-chk-label {
+            font-weight: normal !important;
+            display: flex !important;
+            align-items: center !important;
+            margin-bottom: 5px !important;
+            cursor: pointer !important;
+            color: #333 !important;
+            font-size: 12px !important;
+            user-select: none;
+        }
     </style>
 </head>
 
@@ -305,13 +331,13 @@ include("adminsession.php");
 
                                                 <div class="col-md-4" id="customPagesWrap" style="display:none;">
                                                     <div class="form-group">
-                                                        <label><b>Select Specific Pages</b></label>
-                                                        <div style="background:#fff;border:1px solid #ccc;border-radius:4px;padding:6px 10px;max-height:105px;overflow-y:auto;font-size:12px;">
-                                                            <label style="font-weight:normal;display:block;margin-bottom:3px;"><input type="checkbox" class="chk-page" value="home"> Home (index.php)</label>
-                                                            <label style="font-weight:normal;display:block;margin-bottom:3px;"><input type="checkbox" class="chk-page" value="registration"> Registration (registration.php)</label>
-                                                            <label style="font-weight:normal;display:block;margin-bottom:3px;"><input type="checkbox" class="chk-page" value="about"> About Us (about.php)</label>
-                                                            <label style="font-weight:normal;display:block;margin-bottom:3px;"><input type="checkbox" class="chk-page" value="services"> Services (services.php)</label>
-                                                            <label style="font-weight:normal;display:block;margin-bottom:3px;"><input type="checkbox" class="chk-page" value="contact"> Contact Us (contact.php)</label>
+                                                        <label><b>Select Specific Pages</b> <small class="text-muted">(works with or without .php)</small></label>
+                                                        <div style="background:#fff;border:1px solid #ccc;border-radius:4px;padding:8px 10px;max-height:130px;overflow-y:auto;">
+                                                            <label class="page-chk-label" for="chk_page_home"><input type="checkbox" id="chk_page_home" class="chk-page browser-default" value="index.php"> Home (index.php / index)</label>
+                                                            <label class="page-chk-label" for="chk_page_reg"><input type="checkbox" id="chk_page_reg" class="chk-page browser-default" value="registration.php"> Registration (registration.php / registration)</label>
+                                                            <label class="page-chk-label" for="chk_page_about"><input type="checkbox" id="chk_page_about" class="chk-page browser-default" value="about.php"> About Us (about.php / about)</label>
+                                                            <label class="page-chk-label" for="chk_page_services"><input type="checkbox" id="chk_page_services" class="chk-page browser-default" value="services.php"> Services (services.php / services)</label>
+                                                            <label class="page-chk-label" for="chk_page_contact"><input type="checkbox" id="chk_page_contact" class="chk-page browser-default" value="contact.php"> Contact Us (contact.php / contact)</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -543,13 +569,17 @@ $(document).ready(function () {
             {
                 data: 'display_pages',
                 render: function (p) {
-                    if (!p || p === 'home') {
-                        return '<span class="label label-default">Home Only</span>';
+                    if (!p || p === 'home' || p === 'index' || p === 'index.php') {
+                        return '<span class="label label-default">Home (index.php)</span>';
                     } else if (p === 'all') {
                         return '<span class="label label-success">All Pages</span>';
                     } else {
-                        var list = p.split(',');
-                        return '<span class="label label-info" title="' + p + '">' + list.length + ' Specific Pages</span>';
+                        var list = p.split(',').map(function (item) {
+                            var s = $.trim(item);
+                            if (s === 'home') return 'index.php';
+                            return s.indexOf('.') === -1 ? s + '.php' : s;
+                        });
+                        return '<span class="label label-info" title="' + list.join(', ') + '">' + list.join(', ') + '</span>';
                     }
                 }
             },
@@ -776,7 +806,7 @@ $(document).ready(function () {
 
                 // Pages mode
                 var p = (d.display_pages || 'home').toLowerCase().trim();
-                if (p === 'home') {
+                if (p === 'home' || p === 'index' || p === 'index.php') {
                     $('#display_pages_mode').val('home');
                     $('#customPagesWrap').hide();
                 } else if (p === 'all') {
@@ -785,9 +815,14 @@ $(document).ready(function () {
                 } else {
                     $('#display_pages_mode').val('custom');
                     $('#customPagesWrap').show();
-                    var pagesArr = p.split(',');
+                    var pagesArr = p.split(',').map(function (s) {
+                        var slug = $.trim(s).replace(/\.php$/i, '');
+                        return (slug === 'index' || slug === '') ? 'home' : slug;
+                    });
                     $('.chk-page').each(function () {
-                        $(this).prop('checked', pagesArr.includes($(this).val()));
+                        var valSlug = $(this).val().toLowerCase().replace(/\.php$/i, '');
+                        if (valSlug === 'index') valSlug = 'home';
+                        $(this).prop('checked', pagesArr.includes(valSlug));
                     });
                 }
                 $('#display_pages').val(p);

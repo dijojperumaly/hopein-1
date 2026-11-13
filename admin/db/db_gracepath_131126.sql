@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `tbl_admin` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `tbl_admin` (`id`, `name`, `username`, `password`, `role`, `createdat`, `createdby`, `updatedat`, `updatedby`, `isdeletd`, `status`) VALUES
-	(1, 'Administrator', 'admin', '12345', 'AD', NULL, NULL, NULL, NULL, 0, 'Active');
+	(1, 'Administrator', 'admin', '$2y$12$l14nNPadFOyvLgrVEhP8TOk343rYcY5BExHGcl4RCKmmXXT4qLYw.', 'AD', NULL, NULL, NULL, NULL, 0, 'Active');
 
 CREATE TABLE IF NOT EXISTS `tbl_applications` (
   `appid` int NOT NULL AUTO_INCREMENT,
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `tbl_news_popup` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `tbl_news_popup` (`popup_id`, `title`, `content`, `image`, `link_url`, `link_text`, `display_pages`, `display_frequency`, `start_date`, `end_date`, `is_active`, `sort_order`, `createdat`, `createdby`, `updatedat`, `updatedby`) VALUES
-	(1, 'Admission Started', '', 'popup_1794551076_6af6ad2455cc1.jpeg', '', '', 'home', 'always', NULL, NULL, 1, 0, '2026-11-12 11:52:00', 1, '2026-11-13 11:55:00', 1);
+	(1, 'Admission Started', '', 'popup_1794551076_6af6ad2455cc1.jpeg', '', '', 'home', 'always', NULL, NULL, 1, 0, '2026-11-12 11:52:00', 1, '2026-11-13 22:42:00', 1);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
