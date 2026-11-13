@@ -158,12 +158,12 @@ include("header.php");
                             </div>
 
                             <div class="col-12 mt-4">
-                                <div class="d-flex align-items-center flex-wrap">
-                                    <div id="user-input" class="inline me-2">
-                                        <input type="text" class="form-control border-0 bg-light px-4" id="txtcaptcha" name="txtcaptcha" placeholder="Enter Captcha Code *" style="height: 50px; width: 220px;" />
+                                <div class="d-flex align-items-center flex-wrap gap-2">
+                                    <div id="user-input" class="flex-grow-1" style="max-width: 220px; min-width: 150px;">
+                                        <input type="text" class="form-control border-0 bg-light px-3" id="txtcaptcha" name="txtcaptcha" placeholder="Enter Captcha Code *" style="height: 50px; width: 100%;" />
                                     </div>
-                                    <div id="image_captcha" selectable="False" title="Click to refresh captcha" style="cursor: pointer;"></div>
-                                    <button type="button" id="btn_refresh_captcha" class="btn btn-sm btn-outline-secondary ms-2" title="Refresh Captcha"><i class="fa fa-sync-alt"></i></button>
+                                    <div id="image_captcha" selectable="False" title="Click to refresh captcha" style="cursor: pointer; margin-left: 0;"></div>
+                                    <button type="button" id="btn_refresh_captcha" class="btn btn-sm btn-outline-secondary" title="Refresh Captcha" aria-label="Refresh Captcha"><i class="fa fa-sync-alt"></i></button>
                                 </div>
                                 <p id="key" class="text-danger fw-bold mt-1 mb-0"></p>
                             </div>

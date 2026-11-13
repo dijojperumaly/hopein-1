@@ -274,7 +274,7 @@
 
                 <!-- Action Button under Poster (Only for poster-only mode when link exists) -->
                 <div id="posterActionWrap" style="display:none;">
-                    <a id="posterActionBtn" href="#" class="popup-cta-btn" target="_blank">
+                    <a id="posterActionBtn" href="#" class="popup-cta-btn" target="_blank" rel="noopener noreferrer">
                         <span id="posterActionText">Learn More</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -290,7 +290,7 @@
                     <!-- Footer -->
                     <div class="modal-footer">
                         <div id="popupLinkWrap" style="display:none;">
-                            <a id="popupLink" href="#" class="popup-cta-btn" target="_blank">
+                            <a id="popupLink" href="#" class="popup-cta-btn" target="_blank" rel="noopener noreferrer">
                                 <span id="popupLinkText">Learn More</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>

@@ -78,11 +78,11 @@ With 23+ years in education consultancy, we bridge the gap between ambition and 
         <div class="container text-center">
             <div class="row justify-content-end">
                 <div class="col-lg-8 col-md-6">
-                    <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
-                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">GracePath</a>. All Rights Reserved. 
+                    <div class="d-flex align-items-center justify-content-center py-3" style="min-height: 65px;">
+                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="index.php">GracePath</a>. All Rights Reserved. 
 						
 						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "#/credit-removal". Thank you for your support. ***/-->
-						Designed by <a class="text-white border-bottom" href="#">EDEN</a></p>
+						Designed by <span class="text-white border-bottom">EDEN</span></p>
                     </div>
                 </div>
             </div>

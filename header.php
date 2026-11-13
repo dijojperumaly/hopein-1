@@ -9,28 +9,28 @@ $site_url = $protocol . $host . ($base_dir ? $base_dir : '');
 
 $seo_pages = [
     'index.php' => [
-        'title'       => 'GracePath Education Consultancy | BSc Nursing, GNM & Study Abroad Admissions in Kerala',
-        'description' => 'GracePath Education Consultancy in Ponkunnam, Kottayam offers 100% transparent college admissions across India and abroad with 23+ years of expertise. Direct-to-college fee payments and zero student commission for BSc Nursing, GNM, Engineering, Pharmacy, Allied Health & MBA.',
-        'keywords'    => 'GracePath, GracePath Education, education consultancy Kerala, BSc Nursing admission Karnataka Kerala, GNM nursing admission, study abroad consultants Kottayam, Ponkunnam college admission guidance, direct college admission India'
+        'title'       => 'GracePath Education | College Admissions India & Abroad',
+        'description' => 'Transparent college admissions in India & abroad with 23+ years of expertise. Direct college fee payments for Nursing, Engineering, Pharmacy & MBA.',
+        'keywords'    => 'GracePath, GracePath Education, education consultancy Kerala, BSc Nursing admission Karnataka Kerala, GNM nursing admission, study abroad consultants Kottayam, Ponkunnam college admission guidance'
     ],
     'about.php' => [
-        'title'       => 'About Us | GracePath Academy - 23+ Years of Trusted Education Consultancy in Kottayam',
-        'description' => 'Learn about GracePath Academy in Ponkunnam, Kottayam. Guided by 23+ years of experience and integrity, we provide student-first admissions support across India and abroad with direct college payments.',
+        'title'       => 'About GracePath Academy | Education Consultancy Kottayam',
+        'description' => 'GracePath Academy in Ponkunnam, Kottayam offers 23+ years of ethical, student-first admissions support across India and abroad with zero commission.',
         'keywords'    => 'About GracePath Academy, education consultants Ponkunnam Kottayam, transparent college admissions, student counseling Kerala, higher education consultancy'
     ],
     'services.php' => [
-        'title'       => 'Our Services | Admissions in India, Study Abroad, Education Loan & Internships - GracePath',
-        'description' => 'Explore GracePath Education services: UG & PG admissions in India (Nursing, Medical, Engineering, Pharmacy, Management), Study Abroad visa & scholarship guidance, education loan documentation support, and career internships.',
+        'title'       => 'Our Services | Admissions, Study Abroad & Loans - GracePath',
+        'description' => 'Explore UG & PG admissions in India, Study Abroad visa & scholarship guidance, education loan support, and career internships at GracePath Education.',
         'keywords'    => 'admissions in India, study abroad consultancy Kerala, education loan support, BSc nursing admission guidance, digital marketing internship, data analysis internship'
     ],
     'contact.php' => [
-        'title'       => 'Contact GracePath Education | Ponkunnam, Kottayam, Kerala | +91 8086859526',
-        'description' => 'Contact GracePath Education Consultancy at Ponkunnam PO, Kottayam Dist, Kerala 686506. Call +91 8086859526 or email info@gracepath.in for free college admission counseling.',
+        'title'       => 'Contact GracePath Education | Ponkunnam, Kottayam, Kerala',
+        'description' => 'Contact GracePath Education at Ponkunnam PO, Kottayam, Kerala 686506. Call +91 8086859526 or email info@gracepath.in for admission counseling.',
         'keywords'    => 'GracePath contact number, GracePath Ponkunnam address, education consultancy Kottayam contact, college admission inquiry Kerala'
     ],
     'registration.php' => [
-        'title'       => 'Online Admission Registration | Apply Now - GracePath Education Consultancy',
-        'description' => 'Register online with GracePath Education Consultancy for UG & PG college admissions in BSc Nursing, GNM, Pharmacy, Engineering, Allied Health Sciences, and Study Abroad programs.',
+        'title'       => 'Online Admission Registration | GracePath Education',
+        'description' => 'Register online with GracePath Education for BSc Nursing, GNM, Pharmacy, Engineering, Allied Health Sciences & Study Abroad college admissions.',
         'keywords'    => 'GracePath online registration, college admission application form, apply for BSc nursing GNM admission'
     ]
 ];
@@ -178,7 +178,7 @@ $og_image_url   = $site_url . '/img/logo.png';
 
     <!-- Navbar Start -->
     <div class="container-fluid position-relative p-0">
-        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+        <nav class="navbar navbar-expand-lg navbar-dark px-3 px-lg-5 py-2 py-lg-0">
             <a href="index.php" class="navbar-brand p-0">
                 <div class="h1 m-0 fw-bold"><img src="img/logo.png" alt="GracePath Education Logo" width="75" style="margin-right: 8px;">GracePath</div>
             </a>

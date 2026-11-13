@@ -110,7 +110,7 @@ include("header.php");
                         
                     <!-- vission mission end-->
                 </div>
-                <div class="col-lg-5" style="min-height: 500px;">
+                <div class="col-lg-5 about-img-col" style="min-height: 500px;">
                     <div class="position-relative h-100">
                         <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="img/bb2.jpg" alt="GracePath Academy Campus Guidance" loading="lazy" style="object-fit: cover;">
                     </div>
@@ -134,18 +134,10 @@ include("header.php");
                         <div class="team-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="img/team-1.jpg" alt="Tom Kuriakose - Director at GracePath Education" loading="lazy">
                             <div class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
-                                    <i class="fab fa-twitter fw-normal"></i>
-                                </a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
-                                    <i class="fab fa-facebook-f fw-normal"></i>
-                                </a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
-                                    <i class="fab fa-instagram fw-normal"></i>
-                                </a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
-                                    <i class="fab fa-linkedin-in fw-normal"></i>
-                                </a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Tom Kuriakose Twitter"><i class="fab fa-twitter fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Tom Kuriakose Facebook"><i class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Tom Kuriakose Instagram"><i class="fab fa-instagram fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Tom Kuriakose LinkedIn"><i class="fab fa-linkedin-in fw-normal"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -159,18 +151,10 @@ include("header.php");
                         <div class="team-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="img/team-2.jpg" alt="Sinu Tom - Manager at GracePath Education" loading="lazy">
                             <div class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
-                                    <i class="fab fa-twitter fw-normal"></i>
-                                </a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
-                                    <i class="fab fa-facebook-f fw-normal"></i>
-                                </a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
-                                    <i class="fab fa-instagram fw-normal"></i>
-                                </a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
-                                    <i class="fab fa-linkedin-in fw-normal"></i>
-                                </a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Tom Kuriakose Twitter"><i class="fab fa-twitter fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Tom Kuriakose Facebook"><i class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Tom Kuriakose Instagram"><i class="fab fa-instagram fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Tom Kuriakose LinkedIn"><i class="fab fa-linkedin-in fw-normal"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -184,18 +168,10 @@ include("header.php");
                         <div class="team-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="img/team-3.jpg" alt="Ani Madapurath - Director Admissions at GracePath Education" loading="lazy">
                             <div class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
-                                    <i class="fab fa-twitter fw-normal"></i>
-                                </a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
-                                    <i class="fab fa-facebook-f fw-normal"></i>
-                                </a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
-                                    <i class="fab fa-instagram fw-normal"></i>
-                                </a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
-                                    <i class="fab fa-linkedin-in fw-normal"></i>
-                                </a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Tom Kuriakose Twitter"><i class="fab fa-twitter fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Tom Kuriakose Facebook"><i class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Tom Kuriakose Instagram"><i class="fab fa-instagram fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Tom Kuriakose LinkedIn"><i class="fab fa-linkedin-in fw-normal"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">

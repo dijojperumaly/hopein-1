@@ -163,7 +163,7 @@ include("header.php");
                         <p class="m-0">Develop practical marketing skills.</p>
                         <p class="m-0">Learn and master industry tools.</p>
                         <p class="m-0">Collaborate on live projects to boost your portfolio.</p>
-                        <a class="btn btn-lg btn-primary rounded" href="#">
+                        <a class="btn btn-lg btn-primary rounded" href="registration.php" aria-label="Apply for Digital Marketing Internship">
                             <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -177,7 +177,7 @@ include("header.php");
                         <p class="m-0">Gain real-world experience in data analysis.</p>
                         <p class="m-0">Master data visualization and reporting techniques.</p>
                         <p class="m-0">Work with actual industry datasets to sharpen your expertise.</p>
-                        <a class="btn btn-lg btn-primary rounded" href="#">
+                        <a class="btn btn-lg btn-primary rounded" href="registration.php" aria-label="Apply for Data Analysis Internship">
                             <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>

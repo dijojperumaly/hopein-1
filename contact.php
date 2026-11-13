@@ -58,20 +58,20 @@ include("header.php");
                         <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
                             <i class="fa fa-envelope-open text-white"></i>
                         </div>
-                        <div class="ps-4">
+                        <div class="ps-4" style="min-width: 0;">
                             <h5 class="mb-2">Email to get free quote</h5>
-                            <h4 class="text-primary mb-0">info@gracepath.in</h4>
+                            <h4 class="text-primary mb-0 text-break">info@gracepath.in</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.8s">
-                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded flex-shrink-0" style="width: 60px; height: 60px;">
                             <i class="fa fa-map-marker-alt text-white"></i>
                         </div>
-                        <div class="ps-4">
+                        <div class="ps-4" style="min-width: 0;">
                             <h5 class="mb-2">Visit our office</h5>
-                            <h5 class="text-primary mb-0">PONKUNNAM PO, KOTTAYAM DIST, KERALA 686506</h5>
+                            <h5 class="text-primary mb-0 text-break">PONKUNNAM PO, KOTTAYAM DIST, KERALA 686506</h5>
                         </div>
                     </div>
                 </div>

@@ -7,12 +7,6 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://www.gracepath.in/index.php</loc>
-        <lastmod>2026-11-13</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
         <loc>https://www.gracepath.in/about.php</loc>
         <lastmod>2026-11-13</lastmod>
         <changefreq>monthly</changefreq>
@@ -37,4 +31,3 @@
         <priority>0.7</priority>
     </url>
 </urlset>
-
