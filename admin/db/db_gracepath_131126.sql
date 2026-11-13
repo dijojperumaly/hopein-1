@@ -1,6 +1,5 @@
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb3 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
@@ -68,6 +67,29 @@ CREATE TABLE IF NOT EXISTS `tbl_applications` (
 
 INSERT INTO `tbl_applications` (`appid`, `admissionyear`, `regno`, `name`, `contact`, `email`, `course`, `college`, `parentname`, `parentoccupation`, `parentcontact`, `address`, `dateofbirth`, `aadhar`, `nationality`, `religion`, `community`, `cast`, `bloodgroup`, `hseschoolname`, `hseboard`, `hsemark`, `passoutyear`, `cert_10th`, `cert_12th`, `aadhar_file`, `passport_photo`, `createdat`, `createdby`, `updatedat`, `updatedby`, `status`, `isdeleted`, `isreaded`) VALUES
 	(5, 2026, '26110280885700', 'manoj', '9497326073', 'manoj.a.francis@gmail.com', 'MCA', 'Santhigiri', 'Francis', 'Planter', '8292383892', 'Alackathadathil\r\nVazhakulam', '1983-01-20', '123456792236', 'India', 'Christian', 'RC', 'SC', 'O+', 'St Augustin', 'Kerala', '450', '1998', 'uploads/certificates/26110280885700_cert_10th_6ae858a5c5c05.jpeg', 'uploads/certificates/26110280885700_cert_12th_6ae858a5c5ddc.pdf', 'uploads/certificates/26110280885700_aadhar_file_6ae858a5c5f83.jpg', 'uploads/certificates/26110280885700_passport_photo_6ae858a5c607c.jpg', '2026-11-02 15:02:00', NULL, NULL, NULL, 'Active', 0, 1);
+
+CREATE TABLE IF NOT EXISTS `tbl_news_popup` (
+  `popup_id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT '',
+  `content` text,
+  `image` varchar(255) DEFAULT NULL,
+  `link_url` varchar(500) DEFAULT NULL,
+  `link_text` varchar(100) DEFAULT NULL,
+  `display_pages` varchar(50) DEFAULT 'home',
+  `display_frequency` varchar(20) DEFAULT 'always',
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `is_active` tinyint DEFAULT '1',
+  `sort_order` int DEFAULT '0',
+  `createdat` datetime DEFAULT NULL,
+  `createdby` int DEFAULT NULL,
+  `updatedat` datetime DEFAULT NULL,
+  `updatedby` int DEFAULT NULL,
+  PRIMARY KEY (`popup_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `tbl_news_popup` (`popup_id`, `title`, `content`, `image`, `link_url`, `link_text`, `display_pages`, `display_frequency`, `start_date`, `end_date`, `is_active`, `sort_order`, `createdat`, `createdby`, `updatedat`, `updatedby`) VALUES
+	(1, 'Admission Started', '', 'popup_1794551076_6af6ad2455cc1.jpeg', '', '', 'home', 'always', NULL, NULL, 1, 0, '2026-11-12 11:52:00', 1, '2026-11-13 11:55:00', 1);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

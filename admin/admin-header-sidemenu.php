@@ -16,6 +16,10 @@
                         <li>
                             <a href="admin-application-list.php" class="menu-active"><i class="fa fa-bar-chart" aria-hidden="true"></i> Applications </a>
                         </li>
+
+                        <li>
+                            <a href="admin-popup-list.php" class="menu-active"><i class="fa fa-bullhorn" aria-hidden="true"></i> News / Popup</a>
+                        </li>
                         
 						<li>
                             <a href="admin-logout.php"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>

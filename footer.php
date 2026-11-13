@@ -108,6 +108,9 @@ With 23+ years in education consultancy, we bridge the gap between ambition and 
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!-- Global News Announcement Popup -->
+    <?php include("popup_modal.php"); ?>
 </body>
 
 </html>
