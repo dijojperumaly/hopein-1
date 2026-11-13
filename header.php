@@ -1,17 +1,110 @@
 
 <?php
 $current_script_name = basename($_SERVER['PHP_SELF']);
-?>
 
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+$host     = $_SERVER['HTTP_HOST'] ?? 'www.gracepath.in';
+$base_dir = rtrim( str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '')), '/' );
+$site_url = $protocol . $host . ($base_dir ? $base_dir : '');
+
+$seo_pages = [
+    'index.php' => [
+        'title'       => 'GracePath Education Consultancy | BSc Nursing, GNM & Study Abroad Admissions in Kerala',
+        'description' => 'GracePath Education Consultancy in Ponkunnam, Kottayam offers 100% transparent college admissions across India and abroad with 23+ years of expertise. Direct-to-college fee payments and zero student commission for BSc Nursing, GNM, Engineering, Pharmacy, Allied Health & MBA.',
+        'keywords'    => 'GracePath, GracePath Education, education consultancy Kerala, BSc Nursing admission Karnataka Kerala, GNM nursing admission, study abroad consultants Kottayam, Ponkunnam college admission guidance, direct college admission India'
+    ],
+    'about.php' => [
+        'title'       => 'About Us | GracePath Academy - 23+ Years of Trusted Education Consultancy in Kottayam',
+        'description' => 'Learn about GracePath Academy in Ponkunnam, Kottayam. Guided by 23+ years of experience and integrity, we provide student-first admissions support across India and abroad with direct college payments.',
+        'keywords'    => 'About GracePath Academy, education consultants Ponkunnam Kottayam, transparent college admissions, student counseling Kerala, higher education consultancy'
+    ],
+    'services.php' => [
+        'title'       => 'Our Services | Admissions in India, Study Abroad, Education Loan & Internships - GracePath',
+        'description' => 'Explore GracePath Education services: UG & PG admissions in India (Nursing, Medical, Engineering, Pharmacy, Management), Study Abroad visa & scholarship guidance, education loan documentation support, and career internships.',
+        'keywords'    => 'admissions in India, study abroad consultancy Kerala, education loan support, BSc nursing admission guidance, digital marketing internship, data analysis internship'
+    ],
+    'contact.php' => [
+        'title'       => 'Contact GracePath Education | Ponkunnam, Kottayam, Kerala | +91 8086859526',
+        'description' => 'Contact GracePath Education Consultancy at Ponkunnam PO, Kottayam Dist, Kerala 686506. Call +91 8086859526 or email info@gracepath.in for free college admission counseling.',
+        'keywords'    => 'GracePath contact number, GracePath Ponkunnam address, education consultancy Kottayam contact, college admission inquiry Kerala'
+    ],
+    'registration.php' => [
+        'title'       => 'Online Admission Registration | Apply Now - GracePath Education Consultancy',
+        'description' => 'Register online with GracePath Education Consultancy for UG & PG college admissions in BSc Nursing, GNM, Pharmacy, Engineering, Allied Health Sciences, and Study Abroad programs.',
+        'keywords'    => 'GracePath online registration, college admission application form, apply for BSc nursing GNM admission'
+    ]
+];
+
+$seo = $seo_pages[$current_script_name] ?? $seo_pages['index.php'];
+$canonical_path = ($current_script_name === 'index.php') ? '/' : '/' . $current_script_name;
+$canonical_url  = $site_url . $canonical_path;
+$og_image_url   = $site_url . '/img/logo.png';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>GracePath - Education</title>
+    <title><?php echo htmlspecialchars($seo['title'], ENT_QUOTES, 'UTF-8'); ?></title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
+    <meta name="description" content="<?php echo htmlspecialchars($seo['description'], ENT_QUOTES, 'UTF-8'); ?>">
+    <meta name="keywords" content="<?php echo htmlspecialchars($seo['keywords'], ENT_QUOTES, 'UTF-8'); ?>">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="GracePath Education">
+    <link rel="canonical" href="<?php echo htmlspecialchars($canonical_url, ENT_QUOTES, 'UTF-8'); ?>">
+
+    <!-- Open Graph / WhatsApp / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="GracePath Education">
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:title" content="<?php echo htmlspecialchars($seo['title'], ENT_QUOTES, 'UTF-8'); ?>">
+    <meta property="og:description" content="<?php echo htmlspecialchars($seo['description'], ENT_QUOTES, 'UTF-8'); ?>">
+    <meta property="og:url" content="<?php echo htmlspecialchars($canonical_url, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta property="og:image" content="<?php echo htmlspecialchars($og_image_url, ENT_QUOTES, 'UTF-8'); ?>">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo htmlspecialchars($seo['title'], ENT_QUOTES, 'UTF-8'); ?>">
+    <meta name="twitter:description" content="<?php echo htmlspecialchars($seo['description'], ENT_QUOTES, 'UTF-8'); ?>">
+    <meta name="twitter:image" content="<?php echo htmlspecialchars($og_image_url, ENT_QUOTES, 'UTF-8'); ?>">
+
+    <!-- Schema.org Structured Data (EducationalOrganization / LocalBusiness) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": ["EducationalOrganization", "LocalBusiness"],
+        "name": "GracePath Education",
+        "alternateName": "GracePath Academy",
+        "url": "<?php echo htmlspecialchars($site_url . '/', ENT_QUOTES, 'UTF-8'); ?>",
+        "logo": "<?php echo htmlspecialchars($og_image_url, ENT_QUOTES, 'UTF-8'); ?>",
+        "image": "<?php echo htmlspecialchars($site_url . '/img/banner3.jpg', ENT_QUOTES, 'UTF-8'); ?>",
+        "description": "GracePath Education Consultancy offers 100% transparent college admissions across India and abroad with 23+ years of expertise and direct-to-college fee payments.",
+        "telephone": "+91-8086859526",
+        "email": "info@gracepath.in",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Ponkunnam PO",
+            "addressLocality": "Kottayam",
+            "addressRegion": "Kerala",
+            "postalCode": "686506",
+            "addressCountry": "IN"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 9.5654436,
+            "longitude": 76.761172
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "09:00",
+            "closes": "17:00"
+        },
+        "sameAs": [
+            "https://www.instagram.com/gracepathedu"
+        ]
+    }
+    </script>
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -39,16 +132,16 @@ $current_script_name = basename($_SERVER['PHP_SELF']);
 <body>
     <!-- WHATS APP SHARE BUTTON STARTING -->
     <a
-      href="https://wa.me/918086859526?text=Hi%20There!" target="_blank"
-      class="floatWatsapp">
-      <img src="whatsapp.png"  alt="" height="50px" width="50px" />
+      href="https://wa.me/918086859526?text=Hi%20There!" target="_blank" rel="noopener noreferrer"
+      class="floatWatsapp" aria-label="Chat with GracePath on WhatsApp">
+      <img src="whatsapp.png" alt="Chat with GracePath on WhatsApp" height="50" width="50" />
     </a>
     <!-- WHATS APP SHARE BUTTON ENDING -->
     <!--Floating Call BUTTON STARTING -->
     <a
       href="tel:+918086859526"
-      class="floatCallbutton">
-      <img src="call.png" alt="" height="50px" width="50px" />
+      class="floatCallbutton" aria-label="Call GracePath Education">
+      <img src="call.png" alt="Call GracePath Education" height="50" width="50" />
     </a>
     <!-- Floating Call BUTTON ENDING -->
     
@@ -71,11 +164,11 @@ $current_script_name = basename($_SERVER['PHP_SELF']);
             </div>
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-twitter fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="https://www.instagram.com/gracepathedu?igsh=MXZubXU0MG5vdGQ4cw==" target="_blank"><i class="fab fa-instagram fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href=""><i class="fab fa-youtube fw-normal"></i></a>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter fw-normal"></i></a>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f fw-normal"></i></a>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="https://www.instagram.com/gracepathedu?igsh=MXZubXU0MG5vdGQ4cw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram fw-normal"></i></a>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube fw-normal"></i></a>
                 </div>
             </div>
         </div>
@@ -87,9 +180,9 @@ $current_script_name = basename($_SERVER['PHP_SELF']);
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
             <a href="index.php" class="navbar-brand p-0">
-                <h1><img src="img/logo.png" width="75px" style="margin-right: 8px;" >GracePath</h1>
+                <div class="h1 m-0 fw-bold"><img src="img/logo.png" alt="GracePath Education Logo" width="75" style="margin-right: 8px;">GracePath</div>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Toggle Navigation">
                 <span class="fa fa-bars"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">

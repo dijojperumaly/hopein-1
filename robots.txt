@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /popup_get.php
+Disallow: /adminssion_save.php
+
+Sitemap: https://www.gracepath.in/sitemap.xml
+

@@ -5,9 +5,9 @@ include("header.php");
             <div class="row py-5">
                 <div class="col-12 pt-lg-5 mt-lg-5 text-center">
                     <h1 class="display-4 text-white animated zoomIn">About Us</h1>
-                    <a href="" class="h5 text-white">Home</a>
+                    <a href="index.php" class="h5 text-white">Home</a>
                     <i class="far fa-circle text-white px-2"></i>
-                    <a href="" class="h5 text-white">About</a>
+                    <a href="about.php" class="h5 text-white">About</a>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@ include("header.php");
                 <div class="col-lg-7">
                     <div class="section-title position-relative pb-3 mb-5">
                         <h5 class="fw-bold text-primary text-uppercase">About Us</h5>
-                        <h1 class="mb-0">GracePath Academy</h1>
+                        <h2 class="h1 mb-0">GracePath Academy</h2>
                     </div>
                     <p style="text-align:justify" class="mb-4">Guided by Experience. Governed by Integrity. 
                         With over 23 years of excellence in education consultancy, we bridge the gap between ambition 
@@ -85,7 +85,7 @@ include("header.php");
                         <div class="accordion-item">
                           <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button bg-dark" style="color:aliceblue; font-weight: bolder;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              VISSION
+                              VISION
                             </button>
                           </h2>
                           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -112,7 +112,7 @@ include("header.php");
                 </div>
                 <div class="col-lg-5" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="img/bb2.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="img/bb2.jpg" alt="GracePath Academy Campus Guidance" loading="lazy" style="object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -126,13 +126,13 @@ include("header.php");
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <h5 class="fw-bold text-primary text-uppercase">Team Members</h5>
-                <h1 class="mb-0" style="color: white;">Professional Stuffs Ready to Help Your Business</h1>
+                <h2 class="h1 mb-0" style="color: white;">Professional Staff Ready to Help Your Future</h2>
             </div>
             <div class="row g-5">
                 <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
                     <div class="team-item bg-light rounded overflow-hidden">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
+                            <img class="img-fluid w-100" src="img/team-1.jpg" alt="Tom Kuriakose - Director at GracePath Education" loading="lazy">
                             <div class="team-social">
                                 <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
                                     <i class="fab fa-twitter fw-normal"></i>
@@ -157,7 +157,7 @@ include("header.php");
                 <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
                     <div class="team-item bg-light rounded overflow-hidden">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
+                            <img class="img-fluid w-100" src="img/team-2.jpg" alt="Sinu Tom - Manager at GracePath Education" loading="lazy">
                             <div class="team-social">
                                 <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
                                     <i class="fab fa-twitter fw-normal"></i>
@@ -182,7 +182,7 @@ include("header.php");
                 <div class="col-lg-4 wow slideInUp" data-wow-delay="0.9s">
                     <div class="team-item bg-light rounded overflow-hidden">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
+                            <img class="img-fluid w-100" src="img/team-3.jpg" alt="Ani Madapurath - Director Admissions at GracePath Education" loading="lazy">
                             <div class="team-social">
                                 <a class="btn btn-lg btn-primary btn-lg-square rounded" href="">
                                     <i class="fab fa-twitter fw-normal"></i>
@@ -215,10 +215,10 @@ include("header.php");
         <div class="container py-5 mb-5">
             <div class="bg-white">
                 <div class="owl-carousel vendor-carousel">
-                    <img src="img/IELTS-transparent-logo_1.png" alt="">
-                    <img src="img/oet-transparent-logo.png" alt="">
-                    <img src="img/idp-transparent-logo.png" alt="">
-                    <img src="img/british-council-1-logo.png" alt="">
+                    <img src="img/IELTS-transparent-logo_1.png" alt="IELTS Preparation Partner" loading="lazy">
+                    <img src="img/oet-transparent-logo.png" alt="OET Preparation Partner" loading="lazy">
+                    <img src="img/idp-transparent-logo.png" alt="IDP Education Partner" loading="lazy">
+                    <img src="img/british-council-1-logo.png" alt="British Council Partner" loading="lazy">
                     <!-- <img src="img/vendor-5.jpg" alt="">
                     <img src="img/vendor-6.jpg" alt="">
                     <img src="img/vendor-7.jpg" alt="">

@@ -6,9 +6,7 @@
                 <div class="col-lg-4 col-md-6 footer-about">
                     <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
                         <a href="index.php" class="navbar-brand">
-                            <!-- <h1 class="m-0 text-white"><i class="fa fa-user-tie me-2"></i>GracePath</h1> -->
-                <h1><img src="img/logo.png" width="75px" style="margin-right: 8px;" >GracePath</h1>
-
+                            <div class="h1 text-white mb-0"><img src="img/logo.png" alt="GracePath Education Logo" width="75" style="margin-right: 8px;">GracePath</div>
                         </a>
                         <p style="text-align: justify" class="mt-3 mb-4">Guided by Experience. Governed by Integrity.
 With 23+ years in education consultancy, we bridge the gap between ambition and enrollment. We offer 100% transparent admissions support for colleges across India and abroad. By eliminating student commissions and ensuring all fees are paid directly to verified institutions, we provide a secure, ethical path to your future.</p>
@@ -39,10 +37,10 @@ With 23+ years in education consultancy, we bridge the gap between ambition and 
                                 <p class="mb-0">+91 808 68 59 526</p>
                             </div>
                             <div class="d-flex mt-4">
-                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square" href="https://www.instagram.com/gracepathedu?igsh=MXZubXU0MG5vdGQ4cw==" target="_blank"><i class="fab fa-instagram fw-normal"></i></a>
+                                <a class="btn btn-primary btn-square me-2" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter fw-normal"></i></a>
+                                <a class="btn btn-primary btn-square me-2" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-primary btn-square me-2" href="https://www.instagram.com/gracepathedu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                                <a class="btn btn-primary btn-square" href="https://www.instagram.com/gracepathedu?igsh=MXZubXU0MG5vdGQ4cw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram fw-normal"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
@@ -54,7 +52,7 @@ With 23+ years in education consultancy, we bridge the gap between ambition and 
                                 <a class="text-light mb-2" href="about.php"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
                                 <a class="text-light mb-2" href="services.php"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
                                 <a class="text-light mb-2" href="about.php#ourteam"><i class="bi bi-arrow-right text-primary me-2"></i>Meet The Team</a>
-                                <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
+                                <a class="text-light mb-2" href="registration.php"><i class="bi bi-arrow-right text-primary me-2"></i>Online Registration</a>
                                 <a class="text-light" href="contact.php"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
                             </div>
                         </div>
@@ -67,7 +65,7 @@ With 23+ years in education consultancy, we bridge the gap between ambition and 
                                 <a class="text-light mb-2" href="about.php"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
                                 <a class="text-light mb-2" href="services.php"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
                                 <a class="text-light mb-2" href="about.php#ourteam"><i class="bi bi-arrow-right text-primary me-2"></i>Meet The Team</a>
-                                <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
+                                <a class="text-light mb-2" href="registration.php"><i class="bi bi-arrow-right text-primary me-2"></i>Online Registration</a>
                                 <a class="text-light" href="contact.php"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
                             </div>
                         </div>
@@ -94,7 +92,7 @@ With 23+ years in education consultancy, we bridge the gap between ambition and 
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top" aria-label="Back to Top"><i class="bi bi-arrow-up"></i></a>
 
 
     <!-- JavaScript Libraries -->

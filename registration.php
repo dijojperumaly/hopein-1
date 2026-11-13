@@ -1,3 +1,6 @@
+<?php
+include("header.php");
+?>
 <style>
     #image_captcha {
         margin-top: 0px;
@@ -29,9 +32,6 @@
         align-items: center;
     }
 </style>
-<?php
-include("header.php");
-?>
         <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
             <div class="row py-5">
                 <div class="col-12 pt-lg-5 mt-lg-5 text-center">
