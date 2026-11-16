@@ -459,15 +459,15 @@ include("header.php");
         <div class="container py-5 mb-5">
             <div class="bg-white">
                 <div class="owl-carousel vendor-carousel">
-                    <img src="img/vendor-1.jpg" alt="GracePath Partner Institution 1" loading="lazy">
-                    <img src="img/vendor-2.jpg" alt="GracePath Partner Institution 2" loading="lazy">
-                    <img src="img/vendor-3.jpg" alt="GracePath Partner Institution 3" loading="lazy">
-                    <img src="img/vendor-4.jpg" alt="GracePath Partner Institution 4" loading="lazy">
-                    <img src="img/vendor-5.jpg" alt="GracePath Partner Institution 5" loading="lazy">
-                    <img src="img/vendor-6.jpg" alt="GracePath Partner Institution 6" loading="lazy">
-                    <img src="img/vendor-7.jpg" alt="GracePath Partner Institution 7" loading="lazy">
-                    <img src="img/vendor-8.jpg" alt="GracePath Partner Institution 8" loading="lazy">
-                    <img src="img/vendor-9.jpg" alt="GracePath Partner Institution 9" loading="lazy">
+                    <img src="img/vendor-1.jpg" alt="GracePath Partner Countries 1" loading="lazy">
+                    <img src="img/vendor-2.jpg" alt="GracePath Partner Countries 2" loading="lazy">
+                    <img src="img/vendor-3.jpg" alt="GracePath Partner Countries 3" loading="lazy">
+                    <img src="img/vendor-4.jpg" alt="GracePath Partner Countries 4" loading="lazy">
+                    <img src="img/vendor-5.jpg" alt="GracePath Partner Countries 5" loading="lazy">
+                    <img src="img/vendor-6.jpg" alt="GracePath Partner Countries 6" loading="lazy">
+                    <img src="img/vendor-7.jpg" alt="GracePath Partner Countries 7" loading="lazy">
+                    <img src="img/vendor-8.jpg" alt="GracePath Partner Countries 8" loading="lazy">
+                    <img src="img/vendor-9.jpg" alt="GracePath Partner Countries 9" loading="lazy">
                 </div>
             </div>
         </div>
